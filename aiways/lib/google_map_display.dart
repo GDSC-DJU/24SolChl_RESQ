@@ -11,6 +11,7 @@ class GoogleMapDisplay extends StatefulWidget {
 
 class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
   late GoogleMapController mapController;
+  final Set<Marker> _markers = {};
 
   void onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -22,12 +23,20 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
       future: determinePosition(),
       builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
         if (snapshot.hasData) {
+          LatLng currentLocation =
+              LatLng(snapshot.data!.latitude, snapshot.data!.longitude);
+          _markers.add(Marker(
+            markerId: const MarkerId("currentLocation"),
+            position: currentLocation,
+            infoWindow: const InfoWindow(title: "현재 위치"),
+          )); // 현재 위치에 마커 추가
           return GoogleMap(
             onMapCreated: onMapCreated,
             initialCameraPosition: CameraPosition(
               target: LatLng(snapshot.data!.latitude, snapshot.data!.longitude),
               zoom: 11.0,
             ),
+            markers: _markers,
           );
         } else {
           return const Center(

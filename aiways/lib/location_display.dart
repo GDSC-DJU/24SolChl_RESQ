@@ -15,16 +15,16 @@ class _LocationDisplayState extends State<LocationDisplay> {
   @override
   void initState() {
     super.initState();
-    determinePosition().then((location) {
+    determinePosition().then((result) {
       setState(() {
-        location = location;
+        location = result;
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Text('현재위치: $location');
+    return Text('현재위치: $location', style: const TextStyle(fontSize: 15.0));
   }
 
   Future<String> determinePosition() async {

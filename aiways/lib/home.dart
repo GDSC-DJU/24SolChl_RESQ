@@ -23,7 +23,7 @@ class home extends StatelessWidget {
               ),
               ListView.builder(
                 shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
+
                 //스크롤이 가능한 위젯이 스크롤 되지 않게 만들기
                 itemCount: 10,
                 itemBuilder: (context, index) {
@@ -50,12 +50,12 @@ class home extends StatelessWidget {
 
   void _launchURL() async {
     // 119 전화하기
-    // const url = 'tel:119';
-    // if (await canLaunch(url)) {
-    //   await launch(url);
-    // } else {
-    //   throw 'Could not launch $url';
-    // }
+    const url = 'tel:119';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
     // => 이 부분은 에뮬레이터에선 실행 X, 디바이스 설치 테스트시 주석 해제 할 것
     // 전화 걸기 기능이 시뮬레이터에서는 지원되지 않기 때문에 발생하는 것
   }
