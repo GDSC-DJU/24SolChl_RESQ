@@ -23,7 +23,7 @@ class home extends StatelessWidget {
               ),
               ListView.builder(
                 shrinkWrap: true,
-
+                physics: const NeverScrollableScrollPhysics(),
                 //스크롤이 가능한 위젯이 스크롤 되지 않게 만들기
                 itemCount: 10,
                 itemBuilder: (context, index) {

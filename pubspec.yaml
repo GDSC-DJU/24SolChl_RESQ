@@ -36,6 +36,7 @@ dependencies:
   geocoding: ^2.0.0
   logging: ^1.0.1
   url_launcher: ^6.0.10
+  http: ^0.13.3
 
 
 
