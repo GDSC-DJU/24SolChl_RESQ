@@ -84,7 +84,7 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
     // Google Elevation API를 호출하여 고도를 얻음
     final elevationResponse = await http.get(
       Uri.parse(
-          'https://maps.googleapis.com/maps/api/elevation/json?locations=$latitude,$longitude&key=elevation key'),
+          'https://maps.googleapis.com/maps/api/elevation/json?locations=$latitude,$longitude&key=elevation api'),
     );
     final elevationData = jsonDecode(elevationResponse.body);
     final elevation = elevationData['results'][0]['elevation'];
@@ -92,7 +92,7 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
     // Google Places API를 호출하여 주변 장소를 얻음
     final placesResponse = await http.get(
       Uri.parse(
-          'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$latitude,$longitude&radius=1500&key=places key'),
+          'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$latitude,$longitude&radius=1500&key=places api'),
     );
     final placesData = jsonDecode(placesResponse.body);
     final places = placesData['results'];
@@ -101,9 +101,13 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
     if (elevation > 1000) {
       // 고도가 1000m 이상이면 산으로 판단
       return 'mountain';
-    } else if (places
-        .where((place) => place['types'].contains('natural_feature'))
-        .isNotEmpty) {
+    } else if (places.where((place) {
+      if (place['types'] is List) {
+        return (place['types'] as List).contains('natural_feature');
+      } else {
+        return false;
+      }
+    }).isNotEmpty) {
       // 주변에 자연 특징이 있는 장소가 있으면 바다로 판단
       return 'sea';
     } else {
@@ -112,3 +116,5 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
     }
   }
 }
+
+//이 파일은 코드 분석이 좀 필요할듯..
