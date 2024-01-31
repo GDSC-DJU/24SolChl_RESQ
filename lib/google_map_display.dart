@@ -21,7 +21,8 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
 
   void onMapCreated(GoogleMapController controller) {
     mapController = controller;
-  }
+  } //콜백함수, google map 위젯 생성될 때 호출, google map
+  //제어 가능
 
   @override
   void initState() {
@@ -71,12 +72,13 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
   }
 
   Future<void> determinePosition() async {
-    Position position = await Geolocator.getCurrentPosition();
+    //사용자 현재 위치 가져오기
+    Position position = await Geolocator.getCurrentPosition(); //위치의 위도와 경도를 얻음
 
-    // 위치를 기반으로 산, 바다, 도시 중 어디에 있는지 판단
+    // getCurrentPosition 위치를 기반으로 산, 바다, 도시 중 어디에 있는지 판단
     String locationTypeFromDetermine =
         await determineLocationType(position.latitude, position.longitude);
-
+    //위치 타입 결정
     setState(() {
       locationType = locationTypeFromDetermine;
     });
@@ -107,12 +109,15 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
       return 'mountain';
     } else if (places.where((place) {
       if (place['types'] is List) {
+        //types:장소의 타입을 나타내는 리스트
         return (place['types'] as List).contains('natural_feature');
-      } else {
+      } //types에서 natural_feature를 포함하고 있는지 확인
+      else {
         return false;
       }
     }).isNotEmpty) {
-      // 주변에 자연 특징이 있는 장소가 있으면 바다로 판단
+      //리스트가 비어있지 않다면
+      // 주변에 자연 특징이 있는 장소가 있으면 바다로 판단(natural_feature가 꼭 바다를 의미 하는 건 아님)
       return 'sea';
     } else {
       // 그 외의 경우는 도시로 판단
