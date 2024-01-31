@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+//import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+final GOOGLE_ELEVATION_KEY = "YOUR_ELEVATION_KEY";
+final GOOGLE_PLACES_KEY = "YOUR_PLACES_KEY";
 
 class GoogleMapDisplay extends StatefulWidget {
   const GoogleMapDisplay({Key? key}) : super(key: key);
@@ -84,7 +88,7 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
     // Google Elevation API를 호출하여 고도를 얻음
     final elevationResponse = await http.get(
       Uri.parse(
-          'https://maps.googleapis.com/maps/api/elevation/json?locations=$latitude,$longitude&key=elevation api'),
+          'https://maps.googleapis.com/maps/api/elevation/json?locations=$latitude,$longitude&key=$GOOGLE_ELEVATION_KEY'),
     );
     final elevationData = jsonDecode(elevationResponse.body);
     final elevation = elevationData['results'][0]['elevation'];
@@ -92,7 +96,7 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
     // Google Places API를 호출하여 주변 장소를 얻음
     final placesResponse = await http.get(
       Uri.parse(
-          'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$latitude,$longitude&radius=1500&key=places api'),
+          'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$latitude,$longitude&radius=1500&key=$GOOGLE_PLACES_KEY'),
     );
     final placesData = jsonDecode(placesResponse.body);
     final places = placesData['results'];
