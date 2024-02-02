@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'google_map_display.dart';
 import 'location_display.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-void main() {
+void main() async {
+  //await dotenv.load();
   runApp(const Home());
 }
 
