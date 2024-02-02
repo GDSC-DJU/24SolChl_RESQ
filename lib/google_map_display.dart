@@ -14,6 +14,9 @@ class GoogleMapDisplay extends StatefulWidget {
 class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
   late GoogleMapController mapController;
   String? locationType; // 사용자의 위치 타입을 저장하는 상태 변수
+  String weather = '';
+  IconData weatherIcon = Icons.cloud;
+  double temperature = 0.0; // 온도를 저장할 변수 추가
 
   void onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -24,6 +27,7 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
   void initState() {
     super.initState();
     determinePosition();
+    getWeather();
   }
 
   @override
@@ -54,15 +58,53 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
             },
           ),
         ),
-        Card(
-          // 사용자의 위치 타입을 화면에 표시하는 카드
-          child: ListTile(
-            leading: const Icon(Icons.location_on), // 위치 아이콘
-            title: Text(
-              'You are in the $locationType', // 사용자의 위치 타입
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  IconButton(
+                    icon: Icon(weatherIcon),
+                    tooltip: 'Weather',
+                    onPressed: () {},
+                  ),
+                  Text(
+                    '${temperature.toStringAsFixed(2)} °C',
+                    style: const TextStyle(fontSize: 20.0),
+                  ), // 온도 출력
+                ],
+              ),
             ),
-          ),
-        )
+            Expanded(
+              child: Column(
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      locationType == 'mountain'
+                          ? Icons.landscape
+                          : locationType == 'sea'
+                              ? Icons.beach_access
+                              : Icons.location_city,
+                    ),
+                    onPressed: () {},
+                    tooltip: locationType,
+                  ),
+                  Text(
+                    locationType ?? '탐색을 못하고 있어요..',
+                    style: const TextStyle(fontSize: 20.0),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: IconButton(
+                icon: const Icon(Icons.remove),
+                tooltip: 'Remove',
+                onPressed: () {},
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
@@ -120,6 +162,30 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
       return 'city';
     }
   }
-}
 
-//이 파일은 코드 분석이 좀 필요할듯..
+  Future<void> getWeather() async {
+    Position position = await Geolocator.getCurrentPosition();
+
+    final response = await http.get(Uri.parse(
+        'http://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=af461c953e205294f8b149d6a35ebf0e'));
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      setState(() {
+        weather = data['weather'][0]['main'];
+        temperature = data['main']['temp'] - 273.15; // Kelvin to Celsius
+
+        if (weather == 'Clear') {
+          weatherIcon = Icons.wb_sunny;
+        } else if (weather == 'Clouds') {
+          weatherIcon = Icons.cloud;
+        } else {
+          // Rain, Snow 등
+          weatherIcon = Icons.umbrella;
+        }
+      });
+    } else {
+      print('Failed to load weather data.');
+    }
+  }
+}
