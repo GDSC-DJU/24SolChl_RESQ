@@ -1,7 +1,5 @@
 import 'dart:async'; 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'location_display.dart';
-
 
 class FlutterLocalNotification {
   FlutterLocalNotification._();
@@ -35,26 +33,6 @@ class FlutterLocalNotification {
         );
   }
 
-
-  void monitorLocation() {
-
-    // LocationDisplay 클래스의 인스턴스 생성
-    LocationDisplay locationDisplay = LocationDisplay();
-
-    // 인스턴스를 사용하여 position() 메서드 호출
-    Timer.periodic(Duration(seconds: 1), (timer) async {
-      // LocationDisplay 클래스의 _LocationDisplayState 클래스의 position() 메서드 호출
-      String location = await LocationDisplay.determinePosition();
-      print("current location in noti: $location");
-      //String currentLocation = await determinePosition();
-      // locationDisplay.determinePosition().then((value) {
-      //   print('Current position: $value');
-      // }).catchError((error) {
-      //   print('Error occurred: $error');
-      // });
-    });
-  }
-
   // 알림 보내기
   static Future<void> showNotification() async {
 
@@ -74,9 +52,5 @@ class FlutterLocalNotification {
    
     await flutterLocalNotificationsPlugin.show(
         0, notiTitle, notiBody, notificationDetails);
-  }
-
-  void main(){
-    monitorLocation();
   }
 }

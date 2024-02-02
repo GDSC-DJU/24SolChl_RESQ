@@ -1,6 +1,11 @@
+import 'dart:async'; 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import './notification.dart';
+
+const MONITORING_INTERVAL = 5; // 모니터링 간격: 5분
+const STAYING_CRITERIA = 15; // 위치 변화 기준: 15분 
 
 class LocationDisplay extends StatefulWidget {
   const LocationDisplay({Key? key}) : super(key: key);
@@ -22,7 +27,7 @@ class _LocationDisplayState extends State<LocationDisplay> {
       setState(() {
         location = result;
       });
-      print("current location: $location");
+      monitorLocation();
     });
   }
 
@@ -62,5 +67,43 @@ class _LocationDisplayState extends State<LocationDisplay> {
         await placemarkFromCoordinates(position.latitude, position.longitude);
     //해당 위치 지명으로 가져오기
     return placemarks.first.street ?? 'Unknown location';
+  }
+
+  void monitorLocation() {
+    int minCount = 0;
+    String lastPlace = '';
+    String currentPlace = '';
+
+    // 5분 간격으로 위치 모니터링
+    // 테스트를 할 떄는 Duration(minutes: 5) -> Duration(seconds: 5)로 변환하여 사용
+    Timer.periodic(const Duration(seconds: MONITORING_INTERVAL), (timer) async {
+
+      // 주소에서 숫자 앞부분까지만 트리밍
+      int index = location.indexOf(RegExp(r'[0-9]'));
+      if (index != -1) {
+        currentPlace = location.substring(0, index).trim();
+      } else {
+        currentPlace = location;
+      }
+
+      // 일정시간 후 장소 변화 여부 확인
+      if(lastPlace == currentPlace){
+        minCount += MONITORING_INTERVAL;
+      } else{
+        minCount = 0;
+      }
+      lastPlace = currentPlace;
+
+      // 일정 시간 장소 이동이 없을 시 알림 표출
+      if(minCount >= STAYING_CRITERIA){
+        // 초기화
+        FlutterLocalNotification.init();
+
+        FlutterLocalNotification.requestNotificationPermission();
+        FlutterLocalNotification.showNotification();
+        minCount = 0;
+      }
+      
+    });
   }
 }

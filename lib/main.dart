@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-=======
->>>>>>> origin/space
 import 'package:url_launcher/url_launcher.dart';
 import 'google_map_display.dart';
 import 'location_display.dart';
 
 void main() async {
-  await dotenv.load(fileName: '.env');
   runApp(const Home());
 }
 
@@ -60,6 +55,8 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+
 
   void _launchURL() async {
     const url = 'tel:119';
