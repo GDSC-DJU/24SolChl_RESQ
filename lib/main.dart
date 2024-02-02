@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:url_launcher/url_launcher.dart';
 //import 'home.dart';
 import 'google_map_display.dart';
 import 'location_display.dart';
 
 void main() async {
-  //await dotenv.load();
+  await dotenv.load(fileName: '.env');
   runApp(const Home());
 }
 

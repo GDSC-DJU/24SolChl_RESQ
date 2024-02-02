@@ -7,6 +7,9 @@ class LocationDisplay extends StatefulWidget {
 
   @override
   _LocationDisplayState createState() => _LocationDisplayState();
+
+  static determinePosition() {}
+
 }
 
 class _LocationDisplayState extends State<LocationDisplay> {
@@ -19,6 +22,7 @@ class _LocationDisplayState extends State<LocationDisplay> {
       setState(() {
         location = result;
       });
+      print("current location: $location");
     });
   }
 
@@ -40,9 +44,9 @@ class _LocationDisplayState extends State<LocationDisplay> {
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
-      //denied -> 권한 거부 상태
+      // denied -> 권한 거부 상태
       permission = await Geolocator.requestPermission();
-      //위치 권한을 얻지 못하면 권한 요청
+      // 위치 권한을 얻지 못하면 권한 요청
       if (permission == LocationPermission.denied) {
         return Future.error('Location permissions are denied');
       }
