@@ -4,7 +4,6 @@ import 'google_map_display.dart';
 import 'location_display.dart';
 
 void main() async {
-  //await dotenv.load();
   runApp(const Home());
 }
 
@@ -56,6 +55,8 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+
 
   void _launchURL() async {
     const url = 'tel:119';
