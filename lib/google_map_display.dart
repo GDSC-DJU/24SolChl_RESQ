@@ -4,9 +4,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-final GOOGLE_ELEVATION_KEY = "AIzaSyDFPyBxHHukkmlKfe3tfGwmSDIIiZE9clc";
-final GOOGLE_PLACES_KEY = "AIzaSyA2OoWCsbg8IaIzSBv4SvH7EZAAw30GVlU";
-final WEATHER_KEY = "af461c953e205294f8b149d6a35ebf0e";
+const GOOGLE_ELEVATION_KEY = "AIzaSyDFPyBxHHukkmlKfe3tfGwmSDIIiZE9clc";
+const GOOGLE_PLACES_KEY = "AIzaSyA2OoWCsbg8IaIzSBv4SvH7EZAAw30GVlU";
+const WEATHER_KEY = "af461c953e205294f8b149d6a35ebf0e";
 
 class GoogleMapDisplay extends StatefulWidget {
   const GoogleMapDisplay({Key? key}) : super(key: key);

@@ -56,8 +56,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-
-
   void _launchURL() async {
     const url = 'tel:119';
     if (await canLaunch(url)) {

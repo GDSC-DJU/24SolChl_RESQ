@@ -33,7 +33,7 @@ flutter:
   assets:
     - assets/icon.png
     - assets/splash.png
-    - .env
+    #- .env
 
 # 아이콘 설정
 flutter_launcher_icons:
