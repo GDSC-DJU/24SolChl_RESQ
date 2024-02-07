@@ -1,12 +1,16 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'states/location_controller.dart';
 
-final GOOGLE_ELEVATION_KEY = "AIzaSyDFPyBxHHukkmlKfe3tfGwmSDIIiZE9clc";
-final GOOGLE_PLACES_KEY = "AIzaSyA2OoWCsbg8IaIzSBv4SvH7EZAAw30GVlU";
-final WEATHER_KEY = "af461c953e205294f8b149d6a35ebf0e";
+const GOOGLE_ELEVATION_KEY = "AIzaSyDFPyBxHHukkmlKfe3tfGwmSDIIiZE9clc";
+const GOOGLE_PLACES_KEY = "AIzaSyA2OoWCsbg8IaIzSBv4SvH7EZAAw30GVlU";
+const WEATHER_KEY = "af461c953e205294f8b149d6a35ebf0e";
+
+final locationTypeController = Get.put(LocationTypeController());
 
 class GoogleMapDisplay extends StatefulWidget {
   const GoogleMapDisplay({Key? key}) : super(key: key);
@@ -120,10 +124,11 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
     // getCurrentPosition 위치를 기반으로 산, 바다, 도시 중 어디에 있는지 판단
     String locationTypeFromDetermine =
         await determineLocationType(position.latitude, position.longitude);
-    //위치 타입 결정
+    // 위치 타입 결정
     setState(() {
       locationType = locationTypeFromDetermine;
     });
+    locationTypeController.updateLocationType(locationTypeFromDetermine);
   }
 
   // Google Elevation API와 Google Places API를 사용하여 위치 타입을 판단하는 함수
