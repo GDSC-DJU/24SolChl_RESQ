@@ -1,12 +1,16 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-//import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'states/location_controller.dart';
 
 const GOOGLE_ELEVATION_KEY = "AIzaSyDFPyBxHHukkmlKfe3tfGwmSDIIiZE9clc";
 const GOOGLE_PLACES_KEY = "AIzaSyA2OoWCsbg8IaIzSBv4SvH7EZAAw30GVlU";
+const WEATHER_KEY = "af461c953e205294f8b149d6a35ebf0e";
+
+final locationTypeController = Get.put(LocationTypeController());
 
 class GoogleMapDisplay extends StatefulWidget {
   const GoogleMapDisplay({Key? key}) : super(key: key);
@@ -18,6 +22,9 @@ class GoogleMapDisplay extends StatefulWidget {
 class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
   late GoogleMapController mapController;
   String? locationType; // 사용자의 위치 타입을 저장하는 상태 변수
+  String weather = '';
+  IconData weatherIcon = Icons.cloud;
+  double temperature = 0.0; // 온도를 저장할 변수 추가
 
   void onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -28,6 +35,7 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
   void initState() {
     super.initState();
     determinePosition();
+    getWeather();
   }
 
   @override
@@ -58,15 +66,53 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
             },
           ),
         ),
-        Card(
-          // 사용자의 위치 타입을 화면에 표시하는 카드
-          child: ListTile(
-            leading: const Icon(Icons.location_on), // 위치 아이콘
-            title: Text(
-              'You are in the $locationType', // 사용자의 위치 타입
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  IconButton(
+                    icon: Icon(weatherIcon),
+                    tooltip: 'Weather',
+                    onPressed: () {},
+                  ),
+                  Text(
+                    '${temperature.toStringAsFixed(2)} °C',
+                    style: const TextStyle(fontSize: 20.0),
+                  ), // 온도 출력
+                ],
+              ),
             ),
-          ),
-        )
+            Expanded(
+              child: Column(
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      locationType == '산'
+                          ? Icons.landscape
+                          : locationType == '바다'
+                              ? Icons.beach_access
+                              : Icons.location_city,
+                    ),
+                    onPressed: () {},
+                    tooltip: locationType,
+                  ),
+                  Text(
+                    locationType ?? '탐색을 못하고 있어요..',
+                    style: const TextStyle(fontSize: 20.0),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: IconButton(
+                icon: const Icon(Icons.remove),
+                tooltip: 'Remove',
+                onPressed: () {},
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
@@ -78,10 +124,11 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
     // getCurrentPosition 위치를 기반으로 산, 바다, 도시 중 어디에 있는지 판단
     String locationTypeFromDetermine =
         await determineLocationType(position.latitude, position.longitude);
-    //위치 타입 결정
+    // 위치 타입 결정
     setState(() {
       locationType = locationTypeFromDetermine;
     });
+    locationTypeController.updateLocationType(locationTypeFromDetermine);
   }
 
   // Google Elevation API와 Google Places API를 사용하여 위치 타입을 판단하는 함수
@@ -106,7 +153,7 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
     // 고도와 주변 장소를 기반으로 위치 타입을 판단
     if (elevation > 1000) {
       // 고도가 1000m 이상이면 산으로 판단
-      return 'mountain';
+      return '산';
     } else if (places.where((place) {
       if (place['types'] is List) {
         //types:장소의 타입을 나타내는 리스트
@@ -118,12 +165,36 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
     }).isNotEmpty) {
       //리스트가 비어있지 않다면
       // 주변에 자연 특징이 있는 장소가 있으면 바다로 판단(natural_feature가 꼭 바다를 의미 하는 건 아님)
-      return 'sea';
+      return '바다';
     } else {
       // 그 외의 경우는 도시로 판단
-      return 'city';
+      return '도시';
+    }
+  }
+
+  Future<void> getWeather() async {
+    Position position = await Geolocator.getCurrentPosition();
+
+    final response = await http.get(Uri.parse(
+        'http://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=$WEATHER_KEY'));
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      setState(() {
+        weather = data['weather'][0]['main'];
+        temperature = data['main']['temp'] - 273.15; // Kelvin to Celsius
+
+        if (weather == 'Clear') {
+          weatherIcon = Icons.wb_sunny;
+        } else if (weather == 'Clouds') {
+          weatherIcon = Icons.cloud;
+        } else {
+          // Rain, Snow 등
+          weatherIcon = Icons.umbrella;
+        }
+      });
+    } else {
+      print('Failed to load weather data.');
     }
   }
 }
-
-//이 파일은 코드 분석이 좀 필요할듯..

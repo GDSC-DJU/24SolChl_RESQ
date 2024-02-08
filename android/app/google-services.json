@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "485828839420",
+    "project_id": "aiways1",
+    "storage_bucket": "aiways1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485828839420:android:a23a39b48e8da40bdad479",
+        "android_client_info": {
+          "package_name": "com.example.aiways"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpuU_5xQkWdtOvmw5tjeQSR6IUS7YYJG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

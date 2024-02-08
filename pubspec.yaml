@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_dotenv: ^5.1.0
+  get:
   google_maps_flutter: ^2.5.3
   geolocator: ^7.7.0
   permission_handler: ^8.1.6
@@ -21,6 +22,9 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_local_notifications: ^16.3.2
   flutter_native_splash: ^2.3.10
+  # firebase 설정
+  firebase_core: ^2.25.4
+  cloud_firestore: ^4.14.0
 
 dev_dependencies:
   flutter_test:
@@ -33,6 +37,7 @@ flutter:
   assets:
     - assets/icon.png
     - assets/splash.png
+    # - .env
 
 # 아이콘 설정
 flutter_launcher_icons:
