@@ -1,14 +1,13 @@
-import 'dart:async'; 
+import 'dart:async';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'states/location_controller.dart';
 
 class FlutterLocalNotification {
-
   final locationTypeController = Get.find<LocationTypeController>();
   late String locationType = locationTypeController.locationType.value;
   FlutterLocalNotification();
-  
+
   //FlutterLocalNotification._();
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
@@ -53,7 +52,8 @@ class FlutterLocalNotification {
 
     const notiTitle = "AIWays";
     //const notiBody = "애리 탐험가님!\n지금 산 속으로 여행을 떠나셨네요! 보물들을 찾기 전 조심해야 할 것들을 알려드릴게요!";
-    String notiBody = locationMessages[locationType] ?? locationUndefinedMessage;
+    String notiBody =
+        locationMessages[locationType] ?? locationUndefinedMessage;
 
     const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails('channel id', 'channel name',
@@ -65,7 +65,7 @@ class FlutterLocalNotification {
     const NotificationDetails notificationDetails = NotificationDetails(
         android: androidNotificationDetails,
         iOS: DarwinNotificationDetails(badgeNumber: 1));
-   
+
     await flutterLocalNotificationsPlugin.show(
         0, notiTitle, notiBody, notificationDetails);
   }
