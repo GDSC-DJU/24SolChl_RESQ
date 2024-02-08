@@ -3,7 +3,16 @@ import 'package:url_launcher/url_launcher.dart';
 import 'google_map_display.dart';
 import 'location_display.dart';
 
+
+import 'package:firebase_core/firebase_core.dart'; // 파이어베이스 설정
+import 'firebase_options.dart';  // 파이어베이스 설정
+
 void main() async {
+  // 비동기로 파이어 베이스 실행
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const Home());
 }
 
@@ -55,8 +64,6 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
-
 
   void _launchURL() async {
     const url = 'tel:119';
