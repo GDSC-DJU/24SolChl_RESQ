@@ -1,10 +1,13 @@
-import 'dart:async'; 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'services/location_monitoring.dart';
 import 'states/location_controller.dart';
+import 'package:http/http.dart' as http; // 추가: http 패키지 임포트
+import 'dart:convert'; // 추가: json 사용을 위한 패키지 임포트
+
+const GEOCODE_API = "AIzaSyBd0AOAQD8FDGzLRJBlRFzsMP9qDcOUBrs";
 
 class LocationDisplay extends StatefulWidget {
   const LocationDisplay({Key? key}) : super(key: key);
@@ -63,9 +66,24 @@ class _LocationDisplayState extends State<LocationDisplay> {
     }
 
     Position position = await Geolocator.getCurrentPosition();
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
-    //해당 위치 지명으로 가져오기
-    return placemarks.first.street ?? 'Unknown location';
+    String roadAddress = await getStreetAddress(
+        // 도로명 주소 함수 호출
+        position.latitude,
+        position.longitude); // 도로명 주소 획득
+    return roadAddress;
+  }
+
+  Future<String> getStreetAddress(double latitude, double longitude) async {
+    //도로명 주소 획득 함수
+    final response = await http.get(Uri.parse(
+        'https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&key=$GEOCODE_API&language=ko'));
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> responseJson = jsonDecode(response.body);
+      String roadAddress = responseJson['results'][0]['formatted_address'];
+      return roadAddress;
+    } else {
+      throw Exception('Failed to load street address');
+    }
   }
 }
