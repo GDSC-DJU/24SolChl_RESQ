@@ -4,7 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'states/location_controller.dart';
+import '../states/location_controller.dart';
 
 const GOOGLE_ELEVATION_KEY = "AIzaSyDFPyBxHHukkmlKfe3tfGwmSDIIiZE9clc";
 const GOOGLE_PLACES_KEY = "AIzaSyA2OoWCsbg8IaIzSBv4SvH7EZAAw30GVlU";

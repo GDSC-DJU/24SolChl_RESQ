@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'states/location_controller.dart';
+import '../states/location_controller.dart';
 import 'package:get/get.dart';
 
 class Accident_Screen extends StatelessWidget {

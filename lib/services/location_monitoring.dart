@@ -1,7 +1,7 @@
 import 'dart:async'; 
 import 'package:get/get.dart';
 import '../states/location_controller.dart';
-import '../notification.dart';
+import '../utils/notification.dart';
 
 const MONITORING_INTERVAL = 5; // 모니터링 간격: 5분
 const STAYING_CRITERIA = 15; // 위치 변화 기준: 15분 
@@ -17,7 +17,7 @@ void monitorLocation() {
 
   // 일정 간격으로 위치 모니터링
   // 테스트를 할 떄는 Duration의 minutes를 seconds로 변환하여 사용
-  Timer.periodic(const Duration(seconds: MONITORING_INTERVAL), (timer) async {
+  Timer.periodic(const Duration(minutes: MONITORING_INTERVAL), (timer) async {
     // 주소에서 숫자 앞부분까지만 트리밍
     int index = fullAddress.indexOf(RegExp(r'[0-9]'));
     if (index != -1) {
