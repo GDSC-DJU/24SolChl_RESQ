@@ -1,10 +1,10 @@
-import 'dart:async'; 
+import 'dart:async';
 import 'package:get/get.dart';
 import '../states/location_controller.dart';
 import '../utils/notification.dart';
 
 const MONITORING_INTERVAL = 5; // 모니터링 간격: 5분
-const STAYING_CRITERIA = 15; // 위치 변화 기준: 15분 
+const STAYING_CRITERIA = 15; // 위치 변화 기준: 15분
 
 // 사용자 위치 모니터링
 void monitorLocation() {
@@ -27,15 +27,15 @@ void monitorLocation() {
     }
 
     // 일정시간 후 장소 변화 여부 확인
-    if(lastPlace == currentPlace){
+    if (lastPlace == currentPlace) {
       minCount += MONITORING_INTERVAL;
-    } else{
+    } else {
       minCount = 0;
     }
     lastPlace = currentPlace;
 
     // 일정 시간 장소 이동이 없을 시 알림 표출
-    if(minCount >= STAYING_CRITERIA){
+    if (minCount >= STAYING_CRITERIA) {
       FlutterLocalNotification myInstance = FlutterLocalNotification();
       FlutterLocalNotification.init();
       FlutterLocalNotification.requestNotificationPermission();
