@@ -30,9 +30,9 @@ class AppTheme {
 
     static const TextStyle body = TextStyle(
     fontFamily: primaryFont,
-    fontSize: 16,
+    fontSize: 18,
     letterSpacing: -0.8,
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
   );
 }

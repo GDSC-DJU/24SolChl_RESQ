@@ -7,6 +7,7 @@ import '../states/location_controller.dart';
 import '../styles/theme.dart';
 import 'package:http/http.dart' as http; // 추가: http 패키지 임포트
 import 'dart:convert'; // 추가: json 사용을 위한 패키지 임포트
+import 'package:resq/styles/constants.dart';
 
 const GEOCODE_API = "AIzaSyBd0AOAQD8FDGzLRJBlRFzsMP9qDcOUBrs";
 
@@ -38,7 +39,7 @@ class _LocationDisplayState extends State<LocationDisplay> {
   @override
   Widget build(BuildContext context) {
     return Container( 
-      margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+      margin: const EdgeInsets.symmetric(horizontal: containerMarginHorizontal, vertical: containerMarginVertical),
       child: Text(
         ' |  현재 위치: $location', 
         style: AppTheme.subText,

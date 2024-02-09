@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'firebase_options.dart'; 
-import 'screens/google_map_display.dart';
-import 'screens/location_display.dart';
-import 'widgets/appbar.dart';
-import 'widgets/main_profile.dart';
-import 'styles/colors.dart';
-import 'screens/accident_screen.dart';
 import 'screens/home.dart';
 
 void main() async {
