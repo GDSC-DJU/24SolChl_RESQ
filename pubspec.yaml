@@ -37,7 +37,7 @@ flutter:
     - assets/icon.png
     - assets/splash.png
     - assets/images/
-    - .env
+    #- .env
   fonts:
     - family: Pretendard
       fonts:
