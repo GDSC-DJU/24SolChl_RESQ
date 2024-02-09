@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'google_map_display.dart';
 import 'location_display.dart';
-
+import 'accident_screen.dart';
 
 import 'package:firebase_core/firebase_core.dart'; // 파이어베이스 설정
-import 'firebase_options.dart';  // 파이어베이스 설정
+import 'firebase_options.dart'; // 파이어베이스 설정
 
 void main() async {
   // 비동기로 파이어 베이스 실행
@@ -39,20 +39,7 @@ class _HomeState extends State<Home> {
                 height: MediaQuery.of(context).size.height * 2 / 3,
                 child: const GoogleMapDisplay(),
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Card(
-                    //여기는 나중에 UI 수정 예정
-                    child: ListTile(
-                      title: Text('추가 UI ${index + 1}'),
-                      subtitle: Text('여기에 추가 예정 ${index + 1}'),
-                    ),
-                  );
-                },
-              ),
+              const Accident_Screen(),
             ],
           ),
         ),

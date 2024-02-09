@@ -19,3 +19,13 @@ class LocationTypeController extends GetxController {
     print("now Type: $locationType");
   }
 }
+
+// 온도 상태 관리
+class TemperatureController extends GetxController {
+  RxDouble temperature = 0.0.obs;
+
+  void updateTemperature(double newTemperature) {
+    temperature.value = newTemperature;
+    print("Current Temperature: $temperature");
+  }
+}
