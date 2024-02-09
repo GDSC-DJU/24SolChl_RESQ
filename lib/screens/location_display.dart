@@ -2,8 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'services/location_monitoring.dart';
-import 'states/location_controller.dart';
+import '../services/location_monitoring.dart';
+import '../states/location_controller.dart';
+import '../styles/theme.dart';
 import 'package:http/http.dart' as http; // 추가: http 패키지 임포트
 import 'dart:convert'; // 추가: json 사용을 위한 패키지 임포트
 
@@ -36,7 +37,14 @@ class _LocationDisplayState extends State<LocationDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    return Text('현재위치: $location', style: const TextStyle(fontSize: 15.0));
+    return Container( 
+      margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+      child: Text(
+        ' |  현재 위치: $location', 
+        style: AppTheme.subText,
+        textAlign: TextAlign.left
+      ),
+    );
   }
 
   Future<String> determinePosition() async {

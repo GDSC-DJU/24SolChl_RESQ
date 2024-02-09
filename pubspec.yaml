@@ -22,7 +22,6 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_local_notifications: ^16.3.2
   flutter_native_splash: ^2.3.10
-  # firebase 설정
   firebase_core: ^2.25.4
   cloud_firestore: ^4.14.0
 
@@ -37,7 +36,29 @@ flutter:
   assets:
     - assets/icon.png
     - assets/splash.png
-    # - .env
+    - assets/images/
+    - .env
+  fonts:
+    - family: Pretendard
+      fonts:
+        - asset: assets/fonts/Pretendard-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Pretendard-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Pretendard-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Pretendard-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Pretendard-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Pretendard-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Pretendard-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Pretendard-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Pretendard-Black.ttf
+          weight: 900  
 
 # 아이콘 설정
 flutter_launcher_icons:
