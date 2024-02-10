@@ -14,15 +14,6 @@ const weatherKey = "af461c953e205294f8b149d6a35ebf0e";
 
 final locationTypeController = Get.put(LocationTypeController());
 
-// 아이콘 출처
-// 지진 <a href="https://www.flaticon.com/kr/free-icons/" title="바닥 아이콘">바닥 아이콘  제작자: Freepik - Flaticon</a>
-// 도시 <a href="https://www.flaticon.com/kr/free-icons/" title="도시 아이콘">도시 아이콘  제작자: Yuluck - Flaticon</a>
-// 산 <a href="https://www.flaticon.com/kr/free-icons/" title="자연 아이콘">자연 아이콘  제작자: Yuluck - Flaticon</a>
-// 바다 <a href="https://www.flaticon.com/kr/free-icons/" title="웨이브 아이콘">웨이브 아이콘  제작자: Yuluck - Flaticon</a>
-// 태양 <a href="https://www.flaticon.com/kr/free-icons/" title="방법 아이콘">방법 아이콘  제작자: GOFOX - Flaticon</a>
-// 구름 <a href="https://www.flaticon.com/kr/free-icons/-" title="현서와 웹 아이콘">현서와 웹 아이콘  제작자: GOFOX - Flaticon</a>
-// 우산 <a href="https://www.flaticon.com/kr/free-icons/" title="우산 아이콘">우산 아이콘  제작자: Vector Stall - Flaticon</a>
-
 class LocationBasedInformation extends StatefulWidget {
   const LocationBasedInformation({Key? key}) : super(key: key);
 
@@ -59,6 +50,12 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15.0)),
         color: AppColors.backgroundSecondary,
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.shadowColor,
+              blurRadius: 1.0,
+            ),
+          ]
       ),
       //color: AppColors.backgroundSecondary,
       child: Row(

@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
                 name: '홍길동',
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 2,
+                height: MediaQuery.of(context).size.height * 0.4,
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               LocationBasedInformation(),
-              const Accident_Screen(),
+              const AccidentScreen(),
             ],
           ),
         ),
