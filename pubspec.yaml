@@ -69,7 +69,7 @@ flutter_launcher_icons:
 
 # 스플래시 스크린 설정
 flutter_native_splash:
-  color: "#606060"
+  color: "#f4f4f4"
   image: "assets/splash.png"
   fullscreen: true
   android_12: # 안드로이드 12 이상은 별도 코드가 필요

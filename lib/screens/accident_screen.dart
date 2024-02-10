@@ -1,15 +1,20 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import '../states/location_controller.dart';
 import 'package:get/get.dart';
+import 'package:resq/styles/theme.dart';
+import 'package:resq/styles/colors.dart';
 
-class Accident_Screen extends StatefulWidget {
-  const Accident_Screen({Key? key}) : super(key: key);
+const String name = "홍길동";
+
+class AccidentScreen extends StatefulWidget {
+  const AccidentScreen({Key? key}) : super(key: key);
 
   @override
-  _Accident_ScreenState createState() => _Accident_ScreenState();
+  _AccidentScreenState createState() => _AccidentScreenState();
 }
 
-class _Accident_ScreenState extends State<Accident_Screen> {
+class _AccidentScreenState extends State<AccidentScreen> {
   late final LocationTypeController locationController;
   late final TemperatureController temperatureController;
 
@@ -30,15 +35,24 @@ class _Accident_ScreenState extends State<Accident_Screen> {
 
     return Column(
       children: <Widget>[
-        const Padding(
+        Padding(
           padding: EdgeInsets.all(30.0),
-          child: Text(
-            '{탐험가} 님이 예방해야 하는\n 사고 유형을 분석해드릴게요!',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.bold,
+          child: Text.rich(
+            TextSpan(
+              children: <TextSpan>[
+                TextSpan(text: '$name 님이 알아두시면 좋을\n', style: AppTheme.headlineMedium),
+                TextSpan(text: '사고 유형', style: AppTheme.headlineBold.copyWith(color: AppColors.colorPrimary, height: 2.0,)),
+                TextSpan(text: '을 분석해드릴게요!', style: AppTheme.headlineMedium),
+              ],
             ),
+          ), 
+        ),
+        Transform.rotate(
+          angle: pi / 2,  // 90도 회전
+          child: Image.asset(
+            'assets/images/icon_arrow.png',
+            fit: BoxFit.cover,
+            height: 24,
           ),
         ),
         SectionWidget(
