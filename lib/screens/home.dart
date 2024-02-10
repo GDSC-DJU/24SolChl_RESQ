@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:resq/widgets/google_map_display.dart';
 import 'package:resq/widgets/location_display.dart';
 import 'package:resq/widgets/appbar.dart';
 import 'package:resq/widgets/main_profile.dart';
 import 'package:resq/widgets/location_based_information.dart';
+import 'package:resq/widgets/call_floating_button.dart';
 import 'package:resq/styles/colors.dart';
 import 'accident_screen.dart';
 
@@ -49,21 +49,8 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _launchURL,
-          tooltip: '119 전화 하기',
-          child: const Icon(Icons.call),
-        ),
+        floatingActionButton: CallFloatingButton(),
       ),
     );
-  }
-
-  void _launchURL() async {
-    const url = 'tel:119';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }
