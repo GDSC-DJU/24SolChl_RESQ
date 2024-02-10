@@ -190,7 +190,7 @@ List<String> getAccidentType(String locationType, double temperature) {
   return accidentTypes.sublist(0, 3); // 섞인 리스트에서 앞의 3개만 선택
 }
 
-// 바텀 시트
+// 바텀 시트 추가
 void _showBottomSheet(BuildContext context) {
   Scaffold.of(context).showBottomSheet<void>((BuildContext context) {
     return DraggableScrollableSheet(
