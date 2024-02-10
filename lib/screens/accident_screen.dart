@@ -2,14 +2,27 @@ import 'package:flutter/material.dart';
 import '../states/location_controller.dart';
 import 'package:get/get.dart';
 
-class Accident_Screen extends StatelessWidget {
-  const Accident_Screen({super.key});
+class Accident_Screen extends StatefulWidget {
+  const Accident_Screen({Key? key}) : super(key: key);
+
+  @override
+  _Accident_ScreenState createState() => _Accident_ScreenState();
+}
+
+class _Accident_ScreenState extends State<Accident_Screen> {
+  late final LocationTypeController locationController;
+  late final TemperatureController temperatureController;
+
+  @override
+  void initState() {
+    super.initState();
+    locationController = Get.put(LocationTypeController());
+    temperatureController = Get.put(TemperatureController());
+  }
 
   @override
   Widget build(BuildContext context) {
-    final locationController = Get.put(LocationTypeController());
     String locationType = locationController.locationType.value; // 위치 정보 가져오기
-    final temperatureController = Get.put(TemperatureController());
     double temperature = temperatureController.temperature.value; // 온도 정보 가져오기
 
     List<String> accidentTypes =
@@ -58,36 +71,41 @@ class SectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8.0),
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 14.0,
-              fontWeight: FontWeight.bold,
+    return InkWell(
+      onTap: () {
+        print('Section $title tapped!');
+      },
+      child: Container(
+        margin: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          const SizedBox(height: 8.0),
-          Row(
-            children: [
-              Image.asset(imagePath, width: 100, height: 100),
-              const SizedBox(width: 8.0),
-              Expanded(
-                child: Text(
-                  description,
-                  style: const TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.black,
+            const SizedBox(height: 8.0),
+            Row(
+              children: [
+                Image.asset(imagePath, width: 100, height: 100),
+                const SizedBox(width: 8.0),
+                Expanded(
+                  child: Text(
+                    description,
+                    style: const TextStyle(
+                      fontSize: 14.0,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

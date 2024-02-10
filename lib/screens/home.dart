@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: ResqAppBar(),
-        backgroundColor: AppColors.backgroundPrimary, 
+        backgroundColor: AppColors.backgroundPrimary,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -37,9 +37,9 @@ class _HomeState extends State<Home> {
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const LocationDisplay(),
+                    LocationDisplay(),
                     Expanded(
-                      child: const GoogleMapDisplay(),
+                      child: GoogleMapDisplay(),
                     ),
                   ],
                 ),
