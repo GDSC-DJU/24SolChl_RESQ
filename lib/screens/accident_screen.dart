@@ -1,11 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import '../states/location_controller.dart';
 import 'package:get/get.dart';
+import 'package:resq/states/location_controller.dart';
 import 'package:resq/styles/theme.dart';
 import 'package:resq/styles/colors.dart';
-
-const String name = "홍길동";
+import 'package:resq/styles/constants.dart';
+import 'package:resq/widgets/list_container_large.dart';
 
 class AccidentScreen extends StatefulWidget {
   const AccidentScreen({Key? key}) : super(key: key);
@@ -40,7 +40,7 @@ class _AccidentScreenState extends State<AccidentScreen> {
           child: Text.rich(
             TextSpan(
               children: <TextSpan>[
-                TextSpan(text: '$name 님이 알아두시면 좋을\n', style: AppTheme.headlineMedium),
+                TextSpan(text: '현재 위치에서 알아두시면 좋을\n', style: AppTheme.headlineMedium),
                 TextSpan(text: '사고 유형', style: AppTheme.headlineBold.copyWith(color: AppColors.colorPrimary, height: 2.0,)),
                 TextSpan(text: '을 분석해드릴게요!', style: AppTheme.headlineMedium),
               ],
@@ -48,80 +48,38 @@ class _AccidentScreenState extends State<AccidentScreen> {
           ), 
         ),
         Transform.rotate(
-          angle: pi / 2,  // 90도 회전
+          angle: pi / 2,
           child: Image.asset(
             'assets/images/icon_arrow.png',
             fit: BoxFit.cover,
             height: 24,
           ),
         ),
-        SectionWidget(
-            title: accidentTypes[0],
-            imagePath: accidentImages[accidentTypes[0]] ?? 'assets/icon.png',
-            description: accidentDescriptions[accidentTypes[0]] ?? "설명이 없어요.."),
-        SectionWidget(
-            title: accidentTypes[1],
-            imagePath: accidentImages[accidentTypes[1]] ?? 'assets/icon.png',
-            description: accidentDescriptions[accidentTypes[1]] ?? "설명이 없어요.."),
-        SectionWidget(
-            title: accidentTypes[2],
-            imagePath: accidentImages[accidentTypes[2]] ?? 'assets/icon.png',
-            description: accidentDescriptions[accidentTypes[2]] ?? "설명이 없어요.."),
-      ],
-    );
-  }
-}
-
-class SectionWidget extends StatelessWidget {
-  final String title;
-  final String imagePath;
-  final String description;
-
-  const SectionWidget(
-      {Key? key,
-      required this.title,
-      required this.imagePath,
-      required this.description})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        _showBottomSheet(context);
-      },
-      child: Container(
-        margin: const EdgeInsets.all(8.0),
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
+        const SizedBox(height: 10.0,),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: AppConstants.containerMarginHorizontal, vertical: AppConstants.containerMarginVertical),
+          child: Column(
+            children: [
+              const SizedBox(height: 10.0,),
+              ListContainerLarge(
+                title: accidentTypes[0],
+                imagePath: accidentImages[accidentTypes[0]] ?? 'assets/icon.png',
+                description: accidentDescriptions[accidentTypes[0]] ?? "설명이 없어요.."
               ),
-            ),
-            const SizedBox(height: 8.0),
-            Row(
-              children: [
-                Image.asset(imagePath, width: 100, height: 100),
-                const SizedBox(width: 8.0),
-                Expanded(
-                  child: Text(
-                    description,
-                    style: const TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+              ListContainerLarge(
+                title: accidentTypes[1],
+                imagePath: accidentImages[accidentTypes[1]] ?? 'assets/icon.png',
+                description: accidentDescriptions[accidentTypes[1]] ?? "설명이 없어요.."
+              ),
+              ListContainerLarge(
+                title: accidentTypes[2],
+                imagePath: accidentImages[accidentTypes[2]] ?? 'assets/icon.png',
+                description: accidentDescriptions[accidentTypes[2]] ?? "설명이 없어요.."
+              ),      
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
@@ -202,277 +160,4 @@ List<String> getAccidentType(String locationType, double temperature) {
   }
   accidentTypes.shuffle(); // 사고 유형 리스트를 랜덤하게 섞음
   return accidentTypes.sublist(0, 3); // 섞인 리스트에서 앞의 3개만 선택
-}
-
-// 바텀 시트 추가
-void _showBottomSheet(BuildContext context) {
-  Scaffold.of(context).showBottomSheet<void>((BuildContext context) {
-    return DraggableScrollableSheet(
-      initialChildSize: 0.8,
-      minChildSize: 0.5,
-      maxChildSize: 0.9,
-      expand: false,
-      builder: (BuildContext context, ScrollController scrollController) {
-        return ListView.builder(
-          controller: scrollController,
-          itemCount: 1,
-          itemBuilder: (BuildContext context, int index) {
-            return const Padding(
-              padding: EdgeInsets.all(18),
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    '산불 화재 사고',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 14),
-                  Text(
-                    '산불 이후 대비 이렇게 대처하세요',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 24),
-                  StepContainer(
-                    stepNumber: 'STEP 1',
-                    text1: '즉시 신고해요!',
-                    text2: '산불이 발생한 경우, 즉시 119에 신고하고 대피하세요!.',
-                    image: 'assets/icon.png',
-                    stepNumberColor: Colors.red,
-                    text1Style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                    text2Style: TextStyle(fontSize: 18, color: Colors.black),
-                  ),
-                  SizedBox(height: 16),
-                  StepContainer(
-                    stepNumber: 'STEP 2',
-                    text1: '바람을 파악해요!',
-                    text2: '바람의 방향과 속도를 파악하고, 바람 반대 방향으로 등에 두고 대피하세요!',
-                    image: 'assets/icon.png',
-                    stepNumberColor: Colors.red,
-                    text1Style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                    text2Style: TextStyle(fontSize: 18, color: Colors.black),
-                  ),
-                  SizedBox(height: 16),
-                  StepContainer(
-                    stepNumber: 'STEP 3',
-                    text1: '어디로 대피해야 하나요?',
-                    text2:
-                        '대피 장소는 불이 지나간 장소, 낮은 장소, 바위 뒤 등으로 산불보다 높은 장소를 피하고 불길로부터 멀리 떨어져야 해요!',
-                    image: 'assets/icon.png',
-                    stepNumberColor: Colors.red,
-                    text1Style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                    text2Style: TextStyle(fontSize: 18, color: Colors.black),
-                  ),
-                  StepContainer(
-                    stepNumber: 'STEP 4',
-                    text1: '덮쳐온다면 엎드려요!',
-                    text2:
-                        '불길이 가까워진다면 물이나 흙으로 몸, 얼굴 등을 적시거나 가리고, 불길이 지나갈 때까지 엎드려 있어요!',
-                    image: 'assets/icon.png',
-                    stepNumberColor: Colors.red,
-                    text1Style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                    text2Style: TextStyle(fontSize: 18, color: Colors.black),
-                  ),
-                  SizedBox(height: 25),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 30.0),
-                    child: Text(
-                      '대표 사례',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 12),
-                  Text(
-                    '2020년 강원도 삼척시에서 발생한 대규모 산불\n' '(영상1첨가)',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 12),
-                  Text(
-                    '하와이 섬에서 발생한 대규모 산불\n' '(영상2첨가)',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 25),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 30.0),
-                    child: Text(
-                      '대비 방안',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '이렇게 대비해보세요!',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 12),
-                  StepContainer(
-                    stepNumber: 'STEP 1',
-                    text1: '산에 불을 지르거나 담배를 피우는 행위를 삼가야 해요!',
-                    text2: '',
-                    image: 'assets/icon.png',
-                    stepNumberColor: Colors.red,
-                    text1Style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                    text2Style: TextStyle(fontSize: 18, color: Colors.black),
-                  ),
-                  SizedBox(height: 12),
-                  StepContainer(
-                    stepNumber: 'STEP 2',
-                    text1: '산불이 발생하기 쉬운 봄철에는 산행을 자제해요!',
-                    text2: '',
-                    image: 'assets/icon.png',
-                    stepNumberColor: Colors.red,
-                    text1Style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                    text2Style: TextStyle(fontSize: 18, color: Colors.black),
-                  ),
-                  SizedBox(height: 12),
-                  StepContainer(
-                    stepNumber: 'STEP 3',
-                    text1: '산불 발생 시 대피방법을 숙지하고 있어야 해요!',
-                    text2: '',
-                    image: 'assets/icon.png',
-                    stepNumberColor: Colors.red,
-                    text1Style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                    text2Style: TextStyle(fontSize: 18, color: Colors.black),
-                  ),
-                  // 추가적인 컨텐츠를 여기에 배치할 수 있습니다
-                ],
-              ),
-            );
-          },
-        );
-      },
-    );
-  });
-}
-
-// StepContainer에서 따로 설정(폰트,크기,배치,색깔 등)할 수 있게 하는 코드임
-class StepContainer extends StatelessWidget {
-  final String stepNumber;
-  final String text1; // 첫 번째 텍스트
-  final String text2; // 두 번째 텍스트
-  final String image;
-  final Color stepNumberColor; // stepNumber 텍스트 색상
-  final TextStyle? text1Style; // 첫 번째 텍스트 스타일
-  final TextStyle? text2Style; // 두 번째 텍스트 스타일
-
-  const StepContainer({
-    Key? key,
-    required this.stepNumber,
-    required this.text1,
-    required this.text2,
-    required this.image,
-    this.stepNumberColor = Colors.black,
-    this.text1Style,
-    this.text2Style,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center, // 가운데 정렬
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              stepNumber,
-              textAlign: TextAlign.center, // 가운데 정렬
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-                color: stepNumberColor,
-              ),
-            ),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Image.asset(image, width: 100, height: 100),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        text1,
-                        style: text1Style ??
-                            const TextStyle(
-                                fontSize: 18, color: Colors.black), // 스타일 적용
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          text2,
-                          style: text2Style ??
-                              const TextStyle(
-                                  fontSize: 18, color: Colors.black), // 스타일 적용
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
 }

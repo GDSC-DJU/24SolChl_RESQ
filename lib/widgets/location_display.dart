@@ -1,13 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import '../services/location_monitoring.dart';
-import '../states/location_controller.dart';
-import '../styles/theme.dart';
-import 'package:http/http.dart' as http; // 추가: http 패키지 임포트
-import 'dart:convert'; // 추가: json 사용을 위한 패키지 임포트
+import 'package:http/http.dart' as http;
+import 'package:resq/states/location_controller.dart';
+import 'package:resq/styles/theme.dart';
 import 'package:resq/styles/constants.dart';
+import 'package:resq/utils/location_monitoring.dart';
 
 const GEOCODE_API = "AIzaSyBd0AOAQD8FDGzLRJBlRFzsMP9qDcOUBrs";
 
@@ -39,7 +39,7 @@ class _LocationDisplayState extends State<LocationDisplay> {
   @override
   Widget build(BuildContext context) {
     return Container( 
-      margin: const EdgeInsets.symmetric(horizontal: containerMarginHorizontal, vertical: containerMarginVertical),
+      margin: const EdgeInsets.symmetric(horizontal: AppConstants.containerMarginHorizontal, vertical: AppConstants.containerMarginVertical),
       child: Text(
         ' |  현재 위치: $location', 
         style: AppTheme.subText,

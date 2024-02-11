@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:get/get.dart';
-import '../states/location_controller.dart';
-import '../utils/notification.dart';
+import 'package:resq/states/location_controller.dart';
+import 'package:resq/utils/notification.dart';
 
 const MONITORING_INTERVAL = 5; // 모니터링 간격: 5분
 const STAYING_CRITERIA = 15; // 위치 변화 기준: 15분
