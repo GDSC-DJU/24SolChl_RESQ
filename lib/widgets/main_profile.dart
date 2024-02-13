@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../styles/colors.dart';
-import '../styles/theme.dart';
+import 'package:resq/styles/colors.dart';
+import 'package:resq/styles/theme.dart';
 
 class MainProfile extends StatelessWidget {
   final String profileImageUrl;

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:resq/widgets/google_map_display.dart';
-import 'package:resq/widgets/location_display.dart';
+import 'package:resq/screens/accident_screen.dart';
+import 'package:resq/styles/colors.dart';
 import 'package:resq/widgets/appbar.dart';
 import 'package:resq/widgets/main_profile.dart';
+import 'package:resq/widgets/location_display.dart';
 import 'package:resq/widgets/location_based_information.dart';
+import 'package:resq/widgets/google_map_display.dart';
 import 'package:resq/widgets/call_floating_button.dart';
-import 'package:resq/styles/colors.dart';
-import 'accident_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              LocationBasedInformation(),
+              const LocationBasedInformation(),
               const AccidentScreen(),
             ],
           ),

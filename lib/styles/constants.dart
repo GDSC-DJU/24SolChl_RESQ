@@ -1,4 +1,4 @@
-const double containerMarginHorizontal = 25.0;
-const double containerMarginVertical = 15.0;
-
-// verticalMargin
+class AppConstants {
+  static const double containerMarginHorizontal = 25.0;
+  static const double containerMarginVertical = 15.0;
+}

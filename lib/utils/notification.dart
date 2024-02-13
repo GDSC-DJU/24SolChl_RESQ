@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import '../states/location_controller.dart';
+import 'package:resq/states/location_controller.dart';
 
 class FlutterLocalNotification {
   final locationTypeController = Get.find<LocationTypeController>();
   late String locationType = locationTypeController.locationType.value;
+  
   FlutterLocalNotification();
 
-  //FlutterLocalNotification._();
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   static init() async {
@@ -49,9 +49,8 @@ class FlutterLocalNotification {
       '도시': '활기찬 도시로의 여행을 시작하셨습니다! 복잡한 도시에서도 주의해야 할 것들이 있답니다!',
     };
     const locationUndefinedMessage = '새로운 곳으로 향하셨네요! 낯선 장소에서의 위험에 대비해보세요.';
-
+    
     const notiTitle = "RESQ";
-    //const notiBody = "애리 탐험가님!\n지금 산 속으로 여행을 떠나셨네요! 보물들을 찾기 전 조심해야 할 것들을 알려드릴게요!";
     String notiBody =
         locationMessages[locationType] ?? locationUndefinedMessage;
 

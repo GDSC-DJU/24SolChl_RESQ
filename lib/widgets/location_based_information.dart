@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import '../states/location_controller.dart';
+import 'package:resq/states/location_controller.dart';
 import 'package:resq/styles/colors.dart';
 import 'package:resq/styles/constants.dart';
 import 'package:resq/widgets/rectangle_icon_card.dart';
@@ -46,8 +46,8 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: containerMarginHorizontal, vertical: containerMarginVertical),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.symmetric(horizontal: AppConstants.containerMarginHorizontal, vertical: AppConstants.containerMarginVertical),
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15.0)),
         color: AppColors.backgroundSecondary,
           boxShadow: [
@@ -62,7 +62,7 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
         children: <Widget>[
           RectangleIconCard(
             title: '오늘 날씨', 
-            iconPath: weatherImages[weather] ?? 'assets/images/icon_umbraella.png', 
+            iconPath: weatherImages[weather] ?? 'assets/images/icon_umbrella.png', 
             description: '${temperature.toStringAsFixed(2)} °C'
           ),
           IconCardDevide(),
@@ -81,7 +81,6 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
       ),
     );
   }
-
 
   Future<void> determinePosition() async {
     //사용자 현재 위치 가져오기
@@ -154,6 +153,4 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
       print('Failed to load weather data.');
     }
   }
-
 }
-
