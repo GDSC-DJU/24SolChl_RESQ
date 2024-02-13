@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:resq/screens/accident_screen.dart';
+import 'package:resq/screens/app_info.dart';
 import 'package:resq/styles/colors.dart';
 import 'package:resq/widgets/appbar.dart';
 import 'package:resq/widgets/main_profile.dart';
@@ -46,6 +47,7 @@ class _HomeState extends State<Home> {
               ),
               const LocationBasedInformation(),
               const AccidentScreen(),
+              AppInfo(),
             ],
           ),
         ),
