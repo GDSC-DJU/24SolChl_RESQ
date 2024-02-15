@@ -34,11 +34,11 @@ class ListContainer extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0), 
+                      borderRadius: BorderRadius.circular(8.0),
                       color: AppColors.backgroundPrimary,
                       boxShadow: const [
                         BoxShadow(
-                          color: AppColors.shadowColor, 
+                          color: AppColors.shadowColor,
                           blurRadius: 1,
                         ),
                       ],
@@ -51,21 +51,24 @@ class ListContainer extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          if (subTitle != null) Text(
-                            subTitle!,
-                            style: AppTheme.subText.copyWith(color: AppColors.colorSecondary),
-                          ),
+                          if (subTitle != null)
+                            Text(
+                              subTitle!,
+                              style: AppTheme.subText
+                                  .copyWith(color: AppColors.colorSecondary),
+                            ),
                           Text(
                             title,
                             style: AppTheme.titleMedium,
                           ),
-                          if (body != null) Padding(
-                            padding: const EdgeInsets.only(top: 0.0),
-                            child: Text(
-                              body!,
-                              style: AppTheme.bodyLight,
+                          if (body != null)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0.0),
+                              child: Text(
+                                body!,
+                                style: AppTheme.bodyLight,
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),

@@ -2,9 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:resq/widgets/list_container.dart';
 import 'package:resq/widgets/list_section_head.dart';
 import 'package:resq/styles/colors.dart';
+import 'package:resq/screens/accident_screen.dart'; // 추가
 
-class BottomSheetClass{
-  void showBottomSheet(BuildContext context) {
+class BottomSheetClass {
+  void showBottomSheet(BuildContext context, int index) {
+    List<String> incidentName =
+        accidentTypes; // 전역 변수 accidentTypes를 가져옴 (선택된 3개 사고유형)
+    int incidentIndex = index; // 위젯에서 선택한 사고 유형의 인덱스를 저장
+
+// 대처방안
+    List<String> countermeasures =
+        (accidentDescriptions[incidentName[incidentIndex]]
+                as Map<String, dynamic>)['대처방안']
+            .split('., ');
+    String countermeasure1 = countermeasures[0];
+    String countermeasure2 =
+        countermeasures.length > 1 ? countermeasures[1] : '';
+    String countermeasure3 =
+        countermeasures.length > 2 ? countermeasures[2] : '';
+
+// 대비방안
+    List<String> precautions =
+        (accidentDescriptions[incidentName[incidentIndex]]
+                as Map<String, dynamic>)['대비방안']
+            .split('., ');
+    String precaution1 = precautions[0];
+    String precaution2 = precautions.length > 1 ? precautions[1] : '';
+    String precaution3 = precautions.length > 2 ? precautions[2] : '';
+
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -22,115 +47,91 @@ class BottomSheetClass{
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
                 ),
-              ),        
+              ),
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 9.0, horizontal: 18.0),
-                child: Column(
-                  children: <Widget>[
-                    // 핸들
-                    Container(
-                      width: 40,
-                      height: 4,
-                      margin: EdgeInsets.only(bottom: 18.0),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(2),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 9.0, horizontal: 18.0),
+                  child: Column(
+                    children: <Widget>[
+                      // 핸들
+                      Container(
+                        width: 40,
+                        height: 4,
+                        margin: const EdgeInsets.only(bottom: 18.0),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(2),
+                        ),
                       ),
-                    ),
-                    // 스크롤 가능한 위젯
-                    Expanded(
-                      child: ListView.builder(
+                      // 스크롤 가능한 위젯
+                      Expanded(
+                          child: ListView.builder(
                         controller: scrollController,
                         itemCount: 1,
                         itemBuilder: (BuildContext context, int index) {
-                          return const Column(
+                          return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               // 대처 방안
                               ListSectionHead(
-                                headMain: '산불 화재 사고',
-                                headSub: '산불 이후 이렇게 대처하세요.',
+                                headMain:
+                                    incidentName[incidentIndex], // 사고이름(추가)
+                                headSub:
+                                    '${incidentName[incidentIndex]} 이렇게 대처하세요.',
                               ),
+
                               ListContainer(
                                 subTitle: 'STEP 1',
                                 title: '즉시 신고해요!',
-                                body: '산불이 발생한 경우, 즉시 119에 신고하고 대피하세요!.',
+                                body: countermeasure1, // 추가(대처방안 1)
                                 imagePath: 'assets/icon.png',
                               ),
+
                               ListContainer(
                                 subTitle: 'STEP 2',
                                 title: '바람을 파악해요!',
-                                body: '바람의 방향과 속도를 파악하고, 바람 반대 방향으로 등에 두고 대피하세요!',
+                                body: countermeasure2, // 추가(대처방안 2)
                                 imagePath: 'assets/icon.png',
                               ),
+
                               ListContainer(
                                 subTitle: 'STEP 3',
                                 title: '어디로 대피해야 하나요?',
-                                body:
-                                    '대피 장소는 불이 지나간 장소, 낮은 장소, 바위 뒤 등으로 산불보다 높은 장소를 피하고 불길로부터 멀리 떨어져야 해요!',
+                                body: countermeasure3, // 추가(대처방안 3)
                                 imagePath: 'assets/icon.png',
                               ),
-                              ListContainer(
-                                subTitle: 'STEP 4',
-                                title: '덮쳐온다면 엎드려요!',
-                                body:
-                                    '불길이 가까워진다면 물이나 흙으로 몸, 얼굴 등을 적시거나 가리고, 불길이 지나갈 때까지 엎드려 있어요!',
-                                imagePath: 'assets/icon.png',
-                              ),
-                              SizedBox(height: 25),
-                              // 대표 사례
-                              ListSectionHead(
-                                headMain: '대표 사례',
-                              ),
-                              SizedBox(height: 12),
-                              Text(
-                                '2020년 강원도 삼척시에서 발생한 대규모 산불\n' '(영상1첨가)',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              SizedBox(height: 12),
-                              Text(
-                                '하와이 섬에서 발생한 대규모 산불\n' '(영상2첨가)',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              SizedBox(height: 25),
+
                               // 대비 방안
-                              ListSectionHead(
+                              const ListSectionHead(
                                 headMain: '대비 방안',
                                 headSub: '이렇게 대비해보세요!',
                               ),
-                              SizedBox(height: 12),
+                              const SizedBox(height: 12),
+
                               ListContainer(
                                 subTitle: 'STEP 1',
-                                title: '산에 불을 지르거나 담배를 피우는 행위를 삼가야 해요!',
+                                title: precaution1, // 추가(대비방안 1)
                                 imagePath: 'assets/icon.png',
                               ),
+
                               ListContainer(
                                 subTitle: 'STEP 2',
-                                title: '산불이 발생하기 쉬운 봄철에는 산행을 자제해요!',
+                                title: precaution2, // 추가(대비방안 2)
                                 imagePath: 'assets/icon.png',
                               ),
+
                               ListContainer(
                                 subTitle: 'STEP 3',
-                                title: '산불 발생 시 대피방법을 숙지하고 있어야 해요!',
+                                title: precaution3, // 추가(대비방안 3)
                                 imagePath: 'assets/icon.png',
                               ),
                               // 추가적인 컨텐츠를 여기에 배치할 수 있습니다
                             ],
                           );
                         },
-                      )
-                    ),
-                  ],
-                )
-              ),    
+                      )),
+                    ],
+                  )),
             );
           },
         );
