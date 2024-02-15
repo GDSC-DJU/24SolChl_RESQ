@@ -7,10 +7,12 @@ class ListContainerLarge extends StatelessWidget {
   final String title;
   final String imagePath;
   final String description;
+  final int index; // Ãß°¡
 
   const ListContainerLarge(
       {Key? key,
       required this.title,
+      required this.index,
       required this.imagePath,
       required this.description})
       : super(key: key);
@@ -19,7 +21,7 @@ class ListContainerLarge extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        bottomSheetClass.showBottomSheet(context);
+        bottomSheetClass.showBottomSheet(context, index);
       },
       child: Container(
         margin: const EdgeInsets.all(8.0),
