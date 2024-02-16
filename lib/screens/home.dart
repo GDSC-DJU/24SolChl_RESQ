@@ -28,9 +28,9 @@ class _HomeState extends State<Home> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              MainProfile(
+              const MainProfile(
                 profileImageUrl: 'assets/images/avatar_adventurer.png',
-                name: '홍길동',
+                name: '사고',
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.4,
