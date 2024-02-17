@@ -3,7 +3,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:resq/styles/colors.dart';
 
 class CallFloatingButton extends StatelessWidget {
-  
+  const CallFloatingButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(

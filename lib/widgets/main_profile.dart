@@ -6,7 +6,8 @@ class MainProfile extends StatelessWidget {
   final String profileImageUrl;
   final String name;
 
-  MainProfile({required this.profileImageUrl, required this.name});
+  const MainProfile(
+      {super.key, required this.profileImageUrl, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class MainProfile extends StatelessWidget {
       child: Row(
         children: [
           Stack(
-            alignment: Alignment.center, 
+            alignment: Alignment.center,
             children: [
               Container(
                 width: 58.0,
@@ -45,14 +46,14 @@ class MainProfile extends StatelessWidget {
               ),
             ],
           ),
-
           const SizedBox(width: 15.0),
           Text.rich(
             TextSpan(
               children: <TextSpan>[
-                TextSpan(text: '안녕하세요, ', style: AppTheme.headlineMedium),
+                const TextSpan(text: '오늘도 ', style: AppTheme.headlineMedium),
                 TextSpan(text: name, style: AppTheme.headlineBold),
-                TextSpan(text: ' 탐험가님!', style: AppTheme.headlineMedium),
+                const TextSpan(
+                    text: '로부터 안전한 하루!', style: AppTheme.headlineMedium),
               ],
             ),
           ),

@@ -1,6 +1,8 @@
+import 'dart:async'; // StreamSubscription 클래스를 사용하기 위해 dart:async 패키지를 import합니다.
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+
 class GoogleMapDisplay extends StatefulWidget {
   const GoogleMapDisplay({Key? key}) : super(key: key);
 
@@ -10,53 +12,76 @@ class GoogleMapDisplay extends StatefulWidget {
 
 class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
   late GoogleMapController mapController;
-  String? locationType; // 사용자의 위치 타입을 저장하는 상태 변수
+  String? locationType;
   String weather = '';
   IconData weatherIcon = Icons.cloud;
-  double temperature = 0.0; // 온도를 저장할 변수 추가
+  double temperature = 0.0;
+
+  // 실시간 위치 추적을 위한 변수 추가
+  // 기본값으로 초기 위치를 설정
+  Position _currentPosition = Position(
+    latitude: 37.5665, // 기본 위도
+    longitude: 126.9780, // 기본 경도
+    timestamp: DateTime.now(),
+    accuracy: 0.0,
+    altitude: 0.0,
+    heading: 0.0,
+    speed: 0.0,
+    speedAccuracy: 0.0,
+  );
+
+  StreamSubscription<Position>? _positionStreamSubscription;
 
   void onMapCreated(GoogleMapController controller) {
     mapController = controller;
-  } //콜백함수, google map 위젯 생성될 때 호출, google map
-  //제어 가능
+  }
 
   @override
   void initState() {
     super.initState();
 
+    // 실시간 위치 추적 설정
+    _positionStreamSubscription = Geolocator.getPositionStream(
+      desiredAccuracy: LocationAccuracy.high,
+      distanceFilter: 10, //10미터 이동 감지해서 위치 파악, 실시간성때문에. 테스트 필요함!
+    ).listen(
+      (Position position) {
+        setState(() {
+          _currentPosition = position;
+        });
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    // 스트림 구독을 취소하여 리소스를 해제
+    _positionStreamSubscription?.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: Column(
-          children: [
-            Expanded(
-              child: FutureBuilder<Position>(
-                future: Geolocator.getCurrentPosition(),
-                builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
-                  if (snapshot.hasData) {
-                    return GoogleMap(
-                      onMapCreated: onMapCreated,
-                      initialCameraPosition: CameraPosition(
-                        target: LatLng(
-                            snapshot.data!.latitude, snapshot.data!.longitude),
-                        zoom: 11.0,
-                      ),
-                      myLocationButtonEnabled: true, // 현재 위치로 이동하는 버튼 활성화
-                      myLocationEnabled: true, // 사용자의 현재 위치를 표시함
-                      zoomControlsEnabled: true, // 줌 인/아웃 버튼 활성화
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
-              ),
-            ),
-          ],
-        ), 
-      );
+      child: Column(
+        children: [
+          Expanded(
+            child: _currentPosition == null
+                ? const Center(child: CircularProgressIndicator())
+                : GoogleMap(
+                    onMapCreated: onMapCreated,
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng(_currentPosition.latitude,
+                          _currentPosition.longitude),
+                      zoom: 11.0,
+                    ),
+                    myLocationButtonEnabled: true,
+                    myLocationEnabled: true,
+                    zoomControlsEnabled: true,
+                  ),
+          ),
+        ],
+      ),
+    );
   }
 }

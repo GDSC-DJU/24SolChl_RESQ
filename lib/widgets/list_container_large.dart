@@ -7,7 +7,7 @@ class ListContainerLarge extends StatelessWidget {
   final String title;
   final String imagePath;
   final String description;
-  final int index; // Ãß°¡
+  final int index;
 
   const ListContainerLarge(
       {Key? key,

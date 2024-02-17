@@ -21,19 +21,23 @@ class AccidentScreen extends StatefulWidget {
 class _AccidentScreenState extends State<AccidentScreen> {
   late final LocationTypeController locationController;
   late final TemperatureController temperatureController;
+  late final AccidentTypeController accidentTypeController;
 
   @override
   void initState() {
     super.initState();
     locationController = Get.put(LocationTypeController());
     temperatureController = Get.put(TemperatureController());
-
+    accidentTypeController = Get.put(AccidentTypeController());
     getDataFromFirestore();
     fetchData();
   }
 
   Future<void> fetchData() async {
     accidentDescriptions = await getDataFromFirestore();
+    accidentTypeController.accidentTypes.value = getAccidentType(
+        locationController.locationType.value,
+        temperatureController.temperature.value);
     setState(() {});
   }
 
@@ -225,9 +229,9 @@ List<String> getAccidentType(String locationType, double temperature) {
     }
   } else if (locationType.isEmpty) {
     accidentTypes = [
-      '기본 사고 유형 1',
-      '기본 사고 유형 2',
-      '기본 사고 유형 3'
+      '로딩 중입니다!',
+      '잠시만 기다려주세요..',
+      '금방 끝이 나요!!'
     ]; // 빈 문자열인 경우의 기본 사고 유형
   }
   accidentTypes.shuffle(); // 사고 유형 리스트를 랜덤하게 섞음
