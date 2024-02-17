@@ -3,6 +3,7 @@ import 'package:resq/widgets/list_container.dart';
 import 'package:resq/widgets/list_section_head.dart';
 import 'package:resq/styles/colors.dart';
 import 'package:resq/screens/accident_screen.dart'; // 추가
+import 'package:youtube_player_flutter/youtube_player_flutter.dart'; // 추가
 
 class BottomSheetClass {
   void showBottomSheet(BuildContext context, int index) {
@@ -30,10 +31,36 @@ class BottomSheetClass {
     String precaution2 = precautions.length > 1 ? precautions[1] : '';
     String precaution3 = precautions.length > 2 ? precautions[2] : '';
 
+    // 행동 요령 영상 ID
+    String videoId = (accidentDescriptions[incidentName[incidentIndex]]
+            as Map<String, dynamic>)['행동 요령 영상 ID']
+        .toString();
+
+    // 타이틀
+    List<String> titles = (accidentDescriptions[incidentName[incidentIndex]]
+            as Map<String, dynamic>)['타이틀']
+        .split(', ');
+
+    String title1 = titles[0];
+    String title2 = titles.length > 1 ? titles[1] : '';
+    String title3 = titles.length > 2 ? titles[2] : '';
+
+    /////////////////////////////////////////////////////////////////////////
+
     showModalBottomSheet<void>(
+      // 시작
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
+        //2번
+        YoutubePlayerController controller = YoutubePlayerController(
+          initialVideoId: videoId, // 여기에 YouTube 영상 ID를 넣어주세요.
+          flags: const YoutubePlayerFlags(
+            autoPlay: false,
+            mute: false,
+          ),
+        );
+
         return DraggableScrollableSheet(
           initialChildSize: 0.8,
           minChildSize: 0.5,
@@ -63,6 +90,31 @@ class BottomSheetClass {
                           borderRadius: BorderRadius.circular(2),
                         ),
                       ),
+
+                      //3번
+                      const Row(
+                        children: [
+                          SizedBox(width: 10),
+                          Expanded(
+                            // 텍스트를 넓게 확장하여 이미지와 올바르게 나란히 배치
+                            child: Text(
+                              '예방 및 행동요령',
+                              textAlign: TextAlign.center, // 텍스트를 오른쪽 정렬
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      YoutubePlayer(
+                        controller: controller,
+                        showVideoProgressIndicator: true,
+                        onReady: () {
+                          print('Player is ready.');
+                        },
+                      ),
+
                       // 스크롤 가능한 위젯
                       Expanded(
                           child: ListView.builder(
@@ -72,39 +124,74 @@ class BottomSheetClass {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              // 대처 방안
-                              ListSectionHead(
-                                headMain:
-                                    incidentName[incidentIndex], // 사고이름(추가)
-                                headSub:
-                                    '${incidentName[incidentIndex]} 이렇게 대처하세요.',
+                              //4번
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment
+                                    .center, // 이미지와 텍스트를 세로 중앙에 맞춤
+                                children: [
+                                  Image.asset(
+                                    'assets/images/icon_city.png', // 실제 이미지 파일명 (변경!!!!)
+                                    width: 40, // 이미지의 너비
+                                    height: 40, // 이미지의 높이
+                                  ),
+                                  const SizedBox(width: 10), // 이미지와 텍스트 사이의 간격
+                                  Expanded(
+                                    // 텍스트가 길어질 경우 오른쪽으로 넘치지 않도록 함
+                                    child: ListSectionHead(
+                                      headMain: incidentName[
+                                          incidentIndex], // 사고이름(추가)
+                                      headSub:
+                                          '${incidentName[incidentIndex]} 이렇게 대처하세요.',
+                                    ),
+                                  ),
+                                ],
                               ),
 
                               ListContainer(
                                 subTitle: 'STEP 1',
-                                title: '즉시 신고해요!',
+                                title: title1,
                                 body: countermeasure1, // 추가(대처방안 1)
                                 imagePath: 'assets/icon.png',
                               ),
 
                               ListContainer(
                                 subTitle: 'STEP 2',
-                                title: '바람을 파악해요!',
+                                title: title2,
                                 body: countermeasure2, // 추가(대처방안 2)
                                 imagePath: 'assets/icon.png',
                               ),
 
                               ListContainer(
                                 subTitle: 'STEP 3',
-                                title: '어디로 대피해야 하나요?',
+                                title: title3,
                                 body: countermeasure3, // 추가(대처방안 3)
                                 imagePath: 'assets/icon.png',
                               ),
 
+                              //5번
+                              const SizedBox(height: 25),
+                              // 행동 요령
+
+                              const SizedBox(height: 25),
                               // 대비 방안
-                              const ListSectionHead(
-                                headMain: '대비 방안',
-                                headSub: '이렇게 대비해보세요!',
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment
+                                    .center, // 이미지와 텍스트를 세로 중앙에 맞춤
+                                children: [
+                                  Image.asset(
+                                    'assets/images/icon_city.png', // 실제 이미지 파일명
+                                    width: 40, // 이미지의 너비
+                                    height: 40, // 이미지의 높이
+                                  ),
+                                  const SizedBox(width: 10), // 이미지와 텍스트 사이의 간격
+                                  const Expanded(
+                                    // 텍스트가 길어질 경우 오른쪽으로 넘치지 않도록 함
+                                    child: ListSectionHead(
+                                      headMain: '대비 방안',
+                                      headSub: '이렇게 대비해보세요!',
+                                    ),
+                                  ),
+                                ],
                               ),
                               const SizedBox(height: 12),
 
