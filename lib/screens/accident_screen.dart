@@ -174,7 +174,8 @@ Future<Map<String, Object>> getDataFromFirestore() async {
           accidentDescriptions[accidentType] = {
             //사고에 대한 설명은 "의미", "사례", "대처방안", "대비방안" 네 가지 항목으로 구성되며, 각 항목의 값은 Firestore 문서로부터 가져온 데이터입니다.
             '의미': data?['의미'],
-            '사례': data?['사례'].join(", "),
+            '행동 요령 영상 ID': data?['행동 요령 영상 ID'], // 추가
+            '타이틀': data?['타이틀'].join(", "), //추가
             '대처방안': data?['대처방안'].join(", "),
             '대비방안': data?['대비방안'].join(", "),
           };
@@ -192,7 +193,7 @@ Future<Map<String, Object>> getDataFromFirestore() async {
 }
 
 Map<String, String> accidentImages = {
-  '건물화재': 'assets/images/fire.png',
+  '건물화재': 'assets/images/fire.png', // 여기 문제
   '건물붕괴': 'assets/icon.png',
   //여기에 각 사고유형별 이미지 넣으면 됨
 };
