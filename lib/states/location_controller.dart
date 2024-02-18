@@ -29,3 +29,7 @@ class TemperatureController extends GetxController {
     print("Current Temperature: $temperature");
   }
 }
+
+class AccidentTypeController extends GetxController {
+  var accidentTypes = List<String>.empty(growable: true).obs;
+}
