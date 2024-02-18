@@ -38,13 +38,12 @@ class _LocationDisplayState extends State<LocationDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    return Container( 
-      margin: const EdgeInsets.symmetric(horizontal: AppConstants.containerMarginHorizontal, vertical: AppConstants.containerMarginVertical),
-      child: Text(
-        ' |  현재 위치: $location', 
-        style: AppTheme.subText,
-        textAlign: TextAlign.left
-      ),
+    return Container(
+      margin: const EdgeInsets.symmetric(
+          horizontal: AppConstants.containerMarginHorizontal,
+          vertical: AppConstants.containerMarginVertical),
+      child: Text(' |  현재 위치: $location',
+          style: AppTheme.subText, textAlign: TextAlign.left),
     );
   }
 

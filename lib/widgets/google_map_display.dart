@@ -42,12 +42,14 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
 
     // 실시간 위치 추적 설정
     _positionStreamSubscription = Geolocator.getPositionStream(
-      desiredAccuracy: LocationAccuracy.high,
+      desiredAccuracy: LocationAccuracy.bestForNavigation,
       distanceFilter: 10, //10미터 이동 감지해서 위치 파악, 실시간성때문에. 테스트 필요함!
     ).listen(
       (Position position) {
         setState(() {
           _currentPosition = position;
+          //빈출 사고 유형도 새로 받아오기
+          //accident screen도 새로 받아오기
         });
       },
     );

@@ -15,10 +15,10 @@ class AccidentScreen extends StatefulWidget {
   const AccidentScreen({Key? key}) : super(key: key);
 
   @override
-  _AccidentScreenState createState() => _AccidentScreenState();
+  AccidentScreenState createState() => AccidentScreenState();
 }
 
-class _AccidentScreenState extends State<AccidentScreen> {
+class AccidentScreenState extends State<AccidentScreen> {
   late final LocationTypeController locationController;
   late final TemperatureController temperatureController;
   late final AccidentTypeController accidentTypeController;
