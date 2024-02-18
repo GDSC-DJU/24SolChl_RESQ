@@ -16,34 +16,34 @@ const weatherKey = "af461c953e205294f8b149d6a35ebf0e";
 final locationTypeController = Get.put(LocationTypeController());
 
 final accidentIcons = {
-  "건물화재": 'assets/icons/icon.png',
-  "교통사고": 'assets/icons/icon.png',
-  "건물붕괴": 'assets/images/icon_cloud.png',
-  "공사장 가림막 사고": 'assets/images/icon_arrow.png',
-  "하천 침수": 'assets/images/icon_city.png',
-  "가스폭발사고": 'assets/icons/icon_gas.png',
-  "압사": 'assets/icons/icon_crush.png',
-  "감전사고": 'assets/icons/icon_electric.png',
-  "엘리베이터 사고": 'assets/icons/icon_elevator.png',
-  "낙석사고": 'assets/icons/icon_rockfall.png',
-  "산불사고": 'assets/icons/icon_forestfire.png',
-  "산사태": 'assets/icons/icon_landslide.png',
-  "낙하사고": 'assets/icons/icon_fall.png',
-  "야생동물": 'assets/icons/icon_animal.png',
-  "조난사고": 'assets/icons/icon_distress.png',
-  "탈수": 'assets/icons/icon_dehydration.png',
-  "일사병": 'assets/icons/icon_heatstroke.png',
-  "고산병": 'assets/icons/icon_altitudesickness.png',
-  "해양 익사": 'assets/icons/icon_drowning.png',
-  "해변 낙상": 'assets/icons/icon_beachfall.png',
-  "입수 후 저체온증": 'assets/icons/icon_hypothermia.png',
-  "지진 해일 사고": 'assets/icons/icon_tsunami.png',
-  "해양 생물에 의한 사고": 'assets/icons/icon_marine.png',
-  "갯벌 사고": 'assets/icons/icon_mudflats.png',
-  "선박 침몰": 'assets/icons/icon_shipwreck.png',
-  "낚시 장비 충돌": 'assets/icons/icon_fishing.png',
-  "방파제 테트라포드 사고": 'assets/icons/icon_tetrapod.png'
-}; //얘 왜 이미지를 못받아옴..?
+  '건물화재': 'assets/images/icon_buildingfire.png',
+  '건물붕괴': 'assets/images/icon_collapse.png',
+  '공사장 가림막 사고': 'assets/images/icon_construction.png',
+  '침수': 'assets/images/icon_collapse.png',
+  '교통사고': 'assets/images/icon_carcrash.png',
+  '가스폭발사고': 'assets/images/icon_blast.png',
+  '압사': 'assets/images/icon_pressure.png',
+  '감전사고': 'assets/images/icon_electric.png',
+  '엘리베이터 사고': 'assets/images/icon_elevator.png',
+  '산불사고': 'assets/images/icon_forestfire.png',
+  '일사병': 'assets/images/icon_sunstroke.png',
+  '탈수': 'assets/images/icon_dehydration.png',
+  '산사태': 'assets/images/icon_landslide.png',
+  '고산병': 'assets/images/icon_altitudesickness.png',
+  '낙석사고': 'assets/images/icon_landslide.png',
+  '낙하사고': 'assets/images/icon_landslide.png',
+  '야생동물': 'assets/images/icon_wildanimal.png',
+  '조난사고': 'assets/images/icon_helicopter.png',
+  '해양 익사': 'assets/images/icon_drowning.png',
+  '입수 후 저체온증': 'assets/images/icon_lowtemperature.png',
+  '해양 생물에 의한 사고': 'assets/images/icon_shark.png',
+  '선박 침몰': 'assets/images/icon_sinking.png',
+  '낚시 장비 충돌': 'assets/images/icon_fishhook.png',
+  '해변 낙상': 'assets/images/icon_fall.png',
+  '지진 해일 사고': 'assets/images/icon_tsunami.png',
+  '갯벌 사고': 'assets/images/icon_beach.png',
+  '방파제 테트라포드 사고': 'assets/images/icon_stone.png',
+}; 
 
 class LocationBasedInformation extends StatefulWidget {
   const LocationBasedInformation({Key? key}) : super(key: key);
@@ -68,8 +68,9 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
     '바다': 'assets/images/icon_beach.png',
     '도시': 'assets/images/icon_city.png',
   };
-  double temperature = 0.0; //
-
+  
+  double temperature = 0.0;
+  
   @override
   void initState() {
     super.initState();
@@ -120,7 +121,10 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
               description: locationType ?? '탐색중...'),
           const IconCardDevide(),
           RectangleIconCard(
-              title: '빈출 사고', iconPath: imagePath, description: randomType)
+            title: '빈출 사고', 
+            iconPath: imagePath, 
+            description: randomType
+          ),
         ],
       ),
     );
