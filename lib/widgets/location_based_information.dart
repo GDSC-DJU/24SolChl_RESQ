@@ -34,6 +34,36 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
     '바다': 'assets/images/icon_beach.png',
     '도시': 'assets/images/icon_city.png',
   };
+  final accidentIconImages = {
+    '건물화재': 'assets/images/icon_buildingfire.png',
+    '건물붕괴': 'assets/images/icon_collapse.png',
+    '공사장 가림막 사고': 'assets/images/icon_construction.png',
+    '침수': 'assets/images/icon_collapse.png',
+    '교통사고': 'assets/images/icon_carcrash.png',
+    '가스폭발사고': 'assets/images/icon_blast.png',
+    '압사': 'assets/images/icon_pressure.png',
+    '감전사고': 'assets/images/icon_electric.png',
+    '엘리베이터 사고': 'assets/images/icon_elevator.png',
+    '산불사고': 'assets/images/icon_forestfire.png',
+    '일사병': 'assets/images/icon_sunstroke.png',
+    '탈수': 'assets/images/icon_dehydration.png',
+    '산사태': 'assets/images/icon_landslide.png',
+    '고산병': 'assets/images/icon_altitudesickness.png',
+    '낙석사고': 'assets/images/icon_landslide.png',
+    '낙하사고': 'assets/images/icon_landslide.png',
+    '야생동물': 'assets/images/icon_wildanimal.png',
+    '조난사고': 'assets/images/icon_helicopter.png',
+    '해양 익사': 'assets/images/icon_drowning.png',
+    '입수 후 저체온증': 'assets/images/icon_lowtemperature.png',
+    '해양 생물에 의한 사고': 'assets/images/icon_shark.png',
+    '선박 침몰': 'assets/images/icon_sinking.png',
+    '낚시 장비 충돌': 'assets/images/icon_fishhook.png',
+    '해변 낙상': 'assets/images/icon_fall.png',
+    '지진 해일 사고': 'assets/images/icon_tsunami.png',
+    '갯벌 사고': 'assets/images/icon_beach.png',
+    '방파제 테트라포드 사고': 'assets/images/icon_stone.png',
+  };
+
   double temperature = 0.0; // 
 
   @override
@@ -74,8 +104,8 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
           IconCardDevide(),
           RectangleIconCard(
             title: '빈출 사고', 
-            iconPath: 'assets/images/icon_earthquake.png', 
-            description: '지진'
+            iconPath: accidentIconImages['산불사고'] ?? 'assets/images/icon_helicopter.png', 
+            description: '산불'
           ),
         ],
       ),
