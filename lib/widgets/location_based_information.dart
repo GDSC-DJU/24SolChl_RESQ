@@ -19,7 +19,7 @@ final accidentIcons = {
   '건물화재': 'assets/images/icon_buildingfire.png',
   '건물붕괴': 'assets/images/icon_collapse.png',
   '공사장 가림막 사고': 'assets/images/icon_construction.png',
-  '침수': 'assets/images/icon_collapse.png',
+  '하천 침수': 'assets/images/icon_collapse.png',
   '교통사고': 'assets/images/icon_carcrash.png',
   '가스폭발사고': 'assets/images/icon_blast.png',
   '압사': 'assets/images/icon_pressure.png',
@@ -89,6 +89,7 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
       randomIndex =
           Random().nextInt(accidentTypeController.accidentTypes.length);
       randomType = accidentTypeController.accidentTypes[randomIndex];
+      print('accidentType: $randomType');
       imagePath =
           accidentIcons[randomType] ?? 'assets/images/icon_earthquake.png';
     }
@@ -112,7 +113,7 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
               title: '오늘 날씨',
               iconPath:
                   weatherImages[weather] ?? 'assets/images/icon_umbrella.png',
-              description: '${temperature.toStringAsFixed(2)} °C'),
+              description: '${temperature.toStringAsFixed(1)} °C'),
           const IconCardDevide(),
           RectangleIconCard(
               title: '현재 장소',

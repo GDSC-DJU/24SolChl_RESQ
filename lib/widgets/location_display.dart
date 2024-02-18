@@ -42,7 +42,7 @@ class _LocationDisplayState extends State<LocationDisplay> {
       margin: const EdgeInsets.symmetric(horizontal: AppConstants.containerMarginHorizontal, vertical: AppConstants.containerMarginVertical),
       child: Text(
         ' |  현재 위치: $location', 
-        style: AppTheme.subText,
+        style: AppTheme.subText2,
         textAlign: TextAlign.left
       ),
     );

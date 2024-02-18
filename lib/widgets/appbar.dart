@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import '../styles/colors.dart';
 
 class ResqAppBar extends StatelessWidget implements PreferredSizeWidget {
-  static const double appBarHeight = 80.0;
+  static const double appBarHeight = 90.0;
 
   @override
   Size get preferredSize => Size.fromHeight(appBarHeight);
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: PreferredSize(
+    return PreferredSize(
         preferredSize: const Size.fromHeight(appBarHeight),
         child: Container(
           height: appBarHeight,
@@ -20,6 +19,8 @@ class ResqAppBar extends StatelessWidget implements PreferredSizeWidget {
               BoxShadow(
                 color: AppColors.shadowColor,
                 blurRadius: 4.0,
+                spreadRadius: -4,
+                offset: Offset(0, 4)
               ),
             ],
           ),
@@ -37,7 +38,8 @@ class ResqAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ),
-      ),
+      
+
     );
   }
 }
