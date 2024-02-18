@@ -32,4 +32,9 @@ class TemperatureController extends GetxController {
 
 class AccidentTypeController extends GetxController {
   var accidentTypes = List<String>.empty(growable: true).obs;
+  RxString accidentType = ''.obs;
+
+  void updateAccidentType(String newType) {
+    accidentType.value = newType; // 빈출 사고 유형을 업데이트하는 메소드
+  }
 }

@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: ResqAppBar(),
+        appBar: const ResqAppBar(),
         backgroundColor: AppColors.backgroundPrimary,
         body: SingleChildScrollView(
           child: Column(
@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        floatingActionButton: CallFloatingButton(),
+        floatingActionButton: const CallFloatingButton(),
       ),
     );
   }

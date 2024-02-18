@@ -8,6 +8,7 @@ import 'package:resq/states/location_controller.dart';
 import 'package:resq/styles/colors.dart';
 import 'package:resq/styles/constants.dart';
 import 'package:resq/widgets/rectangle_icon_card.dart';
+import 'dart:async';
 
 const googleElevationKey = "AIzaSyDFPyBxHHukkmlKfe3tfGwmSDIIiZE9clc";
 const googlePlacesKey = "AIzaSyA2OoWCsbg8IaIzSBv4SvH7EZAAw30GVlU";
@@ -76,6 +77,39 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
     accidentTypeController = Get.put(AccidentTypeController());
     determinePosition();
     getWeather();
+    updateAccidentTypePeriodically(); // accidentType을 주기적으로 업데이트하는 함수를 호출
+  }
+
+  void updateAccidentTypePeriodically() async {
+    // 첫 번째 타이머: 5초 후에 한 번만 실행
+    Timer(const Duration(seconds: 10), () async {
+      if (accidentTypeController.accidentTypes.isNotEmpty) {
+        int randomIndex =
+            Random().nextInt(accidentTypeController.accidentTypes.length);
+        String randomType = accidentTypeController.accidentTypes[randomIndex];
+        if (accidentTypeController.accidentTypes.contains(randomType)) {
+          setState(() {
+            accidentTypeController.updateAccidentType(randomType);
+          });
+        }
+      }
+    });
+
+    // 두 번째 타이머: 초기 5초가 지나고 1분마다 반복해서 실행
+    Timer(const Duration(minutes: 1), () {
+      Timer.periodic(const Duration(minutes: 1), (Timer t) async {
+        if (accidentTypeController.accidentTypes.isNotEmpty) {
+          int randomIndex =
+              Random().nextInt(accidentTypeController.accidentTypes.length);
+          String randomType = accidentTypeController.accidentTypes[randomIndex];
+          if (accidentTypeController.accidentTypes.contains(randomType)) {
+            setState(() {
+              accidentTypeController.updateAccidentType(randomType);
+            });
+          }
+        }
+      });
+    });
   }
 
   @override
@@ -150,6 +184,7 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
     );
     final elevationData = jsonDecode(elevationResponse.body);
     final elevation = elevationData['results'][0]['elevation'];
+    print('Elevation: $elevation meters');
 
     // Google Places API를 호출하여 주변 장소를 얻음
     final placesResponse = await http.get(
@@ -160,7 +195,8 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
     final places = placesData['results'];
 
     // 고도와 주변 장소를 기반으로 위치 타입을 판단
-    if (elevation > 1000) {
+    if (elevation > 200) {
+      //테스트로 200 넣었음
       // 고도가 1000m 이상이면 산으로 판단
       return '산';
     } else if (places.where((place) {

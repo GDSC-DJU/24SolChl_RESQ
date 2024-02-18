@@ -6,7 +6,7 @@ import 'package:resq/states/location_controller.dart';
 class FlutterLocalNotification {
   final locationTypeController = Get.find<LocationTypeController>();
   late String locationType = locationTypeController.locationType.value;
-  
+
   FlutterLocalNotification();
 
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -49,7 +49,7 @@ class FlutterLocalNotification {
       '도시': '활기찬 도시로의 여행을 시작하셨습니다! 복잡한 도시에서도 주의해야 할 것들이 있답니다!',
     };
     const locationUndefinedMessage = '새로운 곳으로 향하셨네요! 낯선 장소에서의 위험에 대비해보세요.';
-    
+
     const notiTitle = "RESQ";
     String notiBody =
         locationMessages[locationType] ?? locationUndefinedMessage;

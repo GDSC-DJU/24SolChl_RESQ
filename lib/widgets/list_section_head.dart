@@ -3,7 +3,6 @@ import 'package:resq/styles/colors.dart';
 import 'package:resq/styles/theme.dart';
 
 class ListSectionHead extends StatelessWidget {
-
   final String headMain; // 첫 번째 텍스트
   final String headSub; // 두 번째 텍스트
 
@@ -15,31 +14,25 @@ class ListSectionHead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 30),
-        Row(
-          children: <Widget>[
-            Text(
-              headMain,
-              style: AppTheme.headlineBold,
-            ),
-            const Expanded(
-              child: Divider(
-                thickness: 1,
-                color: AppColors.shadowColor,
-                indent: 10,
-              )
-            )
-          ]
-        ),
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      const SizedBox(height: 30),
+      Row(children: <Widget>[
         Text(
-          headSub,
-          style: AppTheme.bodyLight,
+          headMain,
+          style: AppTheme.headlineBold,
         ),
-        const SizedBox(height: 30),
-      ]
-    );
+        const Expanded(
+            child: Divider(
+          thickness: 1,
+          color: AppColors.shadowColor,
+          indent: 10,
+        ))
+      ]),
+      Text(
+        headSub,
+        style: AppTheme.bodyLight,
+      ),
+      const SizedBox(height: 30),
+    ]);
   }
 }
