@@ -8,7 +8,7 @@ import 'package:resq/styles/colors.dart';
 import 'package:resq/styles/constants.dart';
 import 'package:resq/widgets/list_container_large.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dart:async';
+import 'dart:async'; // 이미지 오버플로우
 
 Map<String, Object> accidentDescriptions = {};
 List<String> accidentTypes = [];
@@ -35,7 +35,7 @@ class AccidentScreenState extends State<AccidentScreen> {
     getDataFromFirestore();
 
     fetchData();
-      // 첫 번째 타이머: 1초 후에 한 번만 실행
+    // 첫 번째 타이머: 1초 후에 한 번만 실행
     Timer(const Duration(seconds: 1), fetchData);
 
     // 두 번째 타이머: 초기 1초가 지나고 5분마다 반복해서 실행
@@ -94,9 +94,6 @@ class AccidentScreenState extends State<AccidentScreen> {
         imageUrls[type] = urls;
       }
     }
-
-
- 
   }
 
   Future<void> fetchData() async {
@@ -175,7 +172,7 @@ class AccidentScreenState extends State<AccidentScreen> {
                           (imageUrls[accidentTypes[1]] as List<String>)
                               .isNotEmpty
                       ? (imageUrls[accidentTypes[1]] as List<String>)[0]
-                      : 'assets/icon.png',
+                      : 'assets/icon.png', // < 이거 아이콘 필요함
                   description: accidentDescriptions[accidentTypes[1]] != null
                       ? (accidentDescriptions[accidentTypes[1]]
                               as Map<String, dynamic>)['의미']

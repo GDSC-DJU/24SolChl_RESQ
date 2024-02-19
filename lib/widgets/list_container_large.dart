@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:resq/screens/bottom_sheet.dart';
 
+Widget loadImage(String imagePath) {
+  if (imagePath.startsWith('http') || imagePath.startsWith('https')) {
+    return Image.network(imagePath, width: 100, height: 100);
+  } else {
+    return Image.asset(imagePath, width: 100, height: 100);
+  }
+}
+
 BottomSheetClass bottomSheetClass = BottomSheetClass();
 
 class ListContainerLarge extends StatelessWidget {
@@ -39,7 +47,7 @@ class ListContainerLarge extends StatelessWidget {
             const SizedBox(height: 8.0),
             Row(
               children: [
-                Image.network(imagePath, width: 100, height: 100),
+                loadImage(imagePath), // 이 부분을 수정했습니다.
                 const SizedBox(width: 8.0),
                 Expanded(
                   child: Text(
