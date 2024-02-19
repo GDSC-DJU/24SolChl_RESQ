@@ -44,6 +44,8 @@ class ListContainerLarge extends StatelessWidget {
             ),
             const SizedBox(height: 8.0),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              
               children: [
                 loadImage(imagePath),
                 const SizedBox(width: 8.0),
