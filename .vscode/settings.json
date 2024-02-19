@@ -1,4 +1,5 @@
 {
     "dart.flutterHotReloadOnSave": "all",
-    "dart.previewHotReloadOnSaveWatcher": true
+    "dart.previewHotReloadOnSaveWatcher": true,
+    "cmake.sourceDirectory": "C:/Users/pyoek/24SolChl_RESQ/build/windows/x64/extracted/firebase_cpp_sdk_windows"
 }
