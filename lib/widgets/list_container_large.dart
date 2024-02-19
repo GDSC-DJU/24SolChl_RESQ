@@ -45,7 +45,7 @@ class ListContainerLarge extends StatelessWidget {
             const SizedBox(height: 8.0),
             Row(
               children: [
-                loadImage(imagePath), // 이 부분을 수정했습니다.
+                loadImage(imagePath),
                 const SizedBox(width: 8.0),
                 Expanded(
                   child: Text(
