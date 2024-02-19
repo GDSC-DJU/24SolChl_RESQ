@@ -81,7 +81,7 @@ class AccidentScreenState extends State<AccidentScreen> {
     for (String env in environments.keys) {
       for (String type in environments[env]!) {
         List<String> urls = [];
-        for (int i = 1; i <= 3; i++) {
+        for (int i = 1; i <= 4; i++) {
           Reference ref = storage.ref().child('사고유형/$env/$type/$type$i.png');
           try {
             String? imageUrl = await ref.getDownloadURL();
@@ -161,7 +161,7 @@ class AccidentScreenState extends State<AccidentScreen> {
                   imagePath: imageUrls[accidentTypes[0]] != null &&
                           (imageUrls[accidentTypes[0]] as List<String>)
                               .isNotEmpty
-                      ? (imageUrls[accidentTypes[0]] as List<String>)[0]
+                      ? (imageUrls[accidentTypes[0]] as List<String>)[3]
                       : 'assets/icon.png',
                   description: accidentDescriptions[accidentTypes[0]] != null
                       ? (accidentDescriptions[accidentTypes[0]]
@@ -174,7 +174,7 @@ class AccidentScreenState extends State<AccidentScreen> {
                   imagePath: imageUrls[accidentTypes[1]] != null &&
                           (imageUrls[accidentTypes[1]] as List<String>)
                               .isNotEmpty
-                      ? (imageUrls[accidentTypes[1]] as List<String>)[0]
+                      ? (imageUrls[accidentTypes[1]] as List<String>)[3]
                       : 'assets/icon.png', // < 이거 아이콘 필요함
                   description: accidentDescriptions[accidentTypes[1]] != null
                       ? (accidentDescriptions[accidentTypes[1]]
@@ -187,7 +187,7 @@ class AccidentScreenState extends State<AccidentScreen> {
                   imagePath: imageUrls[accidentTypes[2]] != null &&
                           (imageUrls[accidentTypes[2]] as List<String>)
                               .isNotEmpty
-                      ? (imageUrls[accidentTypes[2]] as List<String>)[0]
+                      ? (imageUrls[accidentTypes[2]] as List<String>)[3]
                       : 'assets/icon.png',
                   description: accidentDescriptions[accidentTypes[2]] != null
                       ? (accidentDescriptions[accidentTypes[2]]
