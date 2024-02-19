@@ -6,14 +6,14 @@ class ListContainer extends StatelessWidget {
   final String? subTitle;
   final String title;
   final String? body;
-  final String imagePath;
+  final String? imagePath;
 
   const ListContainer({
     Key? key,
     this.subTitle,
     required this.title,
     this.body,
-    required this.imagePath,
+    this.imagePath,
   }) : super(key: key);
 
   @override
@@ -32,20 +32,9 @@ class ListContainer extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: AppColors.backgroundPrimary,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: AppColors.shadowColor,
-                          blurRadius: 1,
-                        ),
-                      ],
-                    ),
-                    child:
-                        Image.network(imagePath, width: 100, height: 100), // 변경
-                  ),
+                  if (imagePath != null)
+                    
+                    Image.network(imagePath!, width: 100, height: 100),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 12.0),

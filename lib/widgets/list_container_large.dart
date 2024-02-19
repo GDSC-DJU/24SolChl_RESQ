@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resq/screens/bottom_sheet.dart';
+import 'package:resq/styles/theme.dart';
 
 BottomSheetClass bottomSheetClass = BottomSheetClass();
 
@@ -31,10 +32,7 @@ class ListContainerLarge extends StatelessWidget {
           children: <Widget>[
             Text(
               title,
-              style: const TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
-              ),
+              style: AppTheme.titleMedium,
             ),
             const SizedBox(height: 8.0),
             Row(
@@ -44,10 +42,7 @@ class ListContainerLarge extends StatelessWidget {
                 Expanded(
                   child: Text(
                     description,
-                    style: const TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.black,
-                    ),
+                    style: AppTheme.bodyLight,
                   ),
                 ),
               ],
