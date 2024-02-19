@@ -197,8 +197,8 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
     final places = placesData['results'];
 
     // 고도와 주변 장소를 기반으로 위치 타입을 판단
-    if (elevation > 100) {
-      //테스트로 200 넣었음
+    if (elevation > 150) {
+      //테스트로 150 넣었음
       // 고도가 1000m 이상이면 산으로 판단
       return '산';
     } else if (places.where((place) {
