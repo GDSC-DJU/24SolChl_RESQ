@@ -82,7 +82,7 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
   }
 
   void updateAccidentTypePeriodically() async {
-    // 첫 번째 타이머: 5초 후에 한 번만 실행
+    // 첫 번째 타이머: 10초 후에 한 번만 실행
     Timer(const Duration(seconds: 10), () async {
       if (accidentTypeController.accidentTypes.isNotEmpty) {
         int randomIndex =
