@@ -67,7 +67,6 @@ class BottomSheetClass {
     String title2 = titles.length > 1 ? titles[1] : '';
     String title3 = titles.length > 2 ? titles[2] : '';
 
-
     showModalBottomSheet<void>(
       // 시작
       context: context,
@@ -150,8 +149,8 @@ class BottomSheetClass {
                                 crossAxisAlignment: CrossAxisAlignment
                                     .center, // 이미지와 텍스트를 세로 중앙에 맞춤
                                 children: [
-                                  Image.asset(
-                                    'assets/images/icon_city.png', // 실제 이미지 파일명 (변경!!!!)
+                                  Image.network(
+                                    icon, // 확성기 이미지 파일명 ()
                                     width: 40, // 이미지의 너비
                                     height: 40, // 이미지의 높이
                                   ),
@@ -199,8 +198,8 @@ class BottomSheetClass {
                                 crossAxisAlignment: CrossAxisAlignment
                                     .center, // 이미지와 텍스트를 세로 중앙에 맞춤
                                 children: [
-                                  Image.asset(
-                                    'assets/images/icon_city.png', // 실제 이미지 파일명
+                                  Image.network(
+                                    icon, // 실제 이미지 파일명
                                     width: 40, // 이미지의 너비
                                     height: 40, // 이미지의 높이
                                   ),
