@@ -43,7 +43,8 @@ class ListContainer extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: Image.asset(imagePath, width: 100, height: 100),
+                    child:
+                        Image.network(imagePath, width: 100, height: 100), // 변경
                   ),
                   Expanded(
                     child: Padding(

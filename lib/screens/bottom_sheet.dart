@@ -11,41 +11,62 @@ class BottomSheetClass {
         accidentTypes; // 전역 변수 accidentTypes를 가져옴 (선택된 3개 사고유형)
     int incidentIndex = index; // 위젯에서 선택한 사고 유형의 인덱스를 저장
 
-// 대처방안
-    List<String> countermeasures =
-        (accidentDescriptions[incidentName[incidentIndex]]
-                as Map<String, dynamic>)['대처방안']
-            .split('., ');
-    String countermeasure1 = countermeasures[0];
+    // 사용자가 선택한 사고 유형 (이미지)
+    String selectedIncidentType = incidentName[incidentIndex];
+
+// 선택된 사고 유형에 대한 이미지 URL 가져오기
+    List<String>? selectedIncidentImages =
+        imageUrls[selectedIncidentType] as List<String>?;
+
+    String imageUrl1 =
+        selectedIncidentImages != null && selectedIncidentImages.isNotEmpty
+            ? selectedIncidentImages[0]
+            : '';
+
+    String imageUrl2 =
+        selectedIncidentImages != null && selectedIncidentImages.length > 1
+            ? selectedIncidentImages[1]
+            : '';
+    String imageUrl3 =
+        selectedIncidentImages != null && selectedIncidentImages.length > 2
+            ? selectedIncidentImages[2]
+            : '';
+    Map<String, dynamic> accidentDescriptionMap = {};
+    if (accidentDescriptions[incidentName[incidentIndex]] != null &&
+        accidentDescriptions[incidentName[incidentIndex]]
+            is Map<String, dynamic>) {
+      accidentDescriptionMap = accidentDescriptions[incidentName[incidentIndex]]
+          as Map<String, dynamic>;
+    }
+
+    List<String> countermeasures = accidentDescriptionMap['대처방안'] != null
+        ? accidentDescriptionMap['대처방안'].split('., ')
+        : [];
+    String countermeasure1 =
+        countermeasures.isNotEmpty ? countermeasures[0] : '';
     String countermeasure2 =
         countermeasures.length > 1 ? countermeasures[1] : '';
     String countermeasure3 =
         countermeasures.length > 2 ? countermeasures[2] : '';
 
-// 대비방안
-    List<String> precautions =
-        (accidentDescriptions[incidentName[incidentIndex]]
-                as Map<String, dynamic>)['대비방안']
-            .split('., ');
-    String precaution1 = precautions[0];
+    List<String> precautions = accidentDescriptionMap['대비방안'] != null
+        ? accidentDescriptionMap['대비방안'].split('., ')
+        : [];
+    String precaution1 = precautions.isNotEmpty ? precautions[0] : '';
     String precaution2 = precautions.length > 1 ? precautions[1] : '';
     String precaution3 = precautions.length > 2 ? precautions[2] : '';
 
-    // 행동 요령 영상 ID
-    String videoId = (accidentDescriptions[incidentName[incidentIndex]]
-            as Map<String, dynamic>)['행동 요령 영상 ID']
-        .toString();
+    String videoId = accidentDescriptionMap['행동 요령 영상 ID'] != null
+        ? accidentDescriptionMap['행동 요령 영상 ID'].toString()
+        : '';
 
-    // 타이틀
-    List<String> titles = (accidentDescriptions[incidentName[incidentIndex]]
-            as Map<String, dynamic>)['타이틀']
-        .split(', ');
-
-    String title1 = titles[0];
+    List<String> titles = accidentDescriptionMap['타이틀'] != null
+        ? accidentDescriptionMap['타이틀'].split(', ')
+        : [];
+    String title1 = titles.isNotEmpty ? titles[0] : '';
     String title2 = titles.length > 1 ? titles[1] : '';
     String title3 = titles.length > 2 ? titles[2] : '';
 
-    /////////////////////////////////////////////////////////////////////////
 
     showModalBottomSheet<void>(
       // 시작
@@ -151,21 +172,21 @@ class BottomSheetClass {
                                 subTitle: 'STEP 1',
                                 title: title1,
                                 body: countermeasure1, // 추가(대처방안 1)
-                                imagePath: 'assets/icon.png',
+                                imagePath: imageUrl1,
                               ),
 
                               ListContainer(
                                 subTitle: 'STEP 2',
                                 title: title2,
                                 body: countermeasure2, // 추가(대처방안 2)
-                                imagePath: 'assets/icon.png',
+                                imagePath: imageUrl2,
                               ),
 
                               ListContainer(
                                 subTitle: 'STEP 3',
                                 title: title3,
                                 body: countermeasure3, // 추가(대처방안 3)
-                                imagePath: 'assets/icon.png',
+                                imagePath: imageUrl3,
                               ),
 
                               //5번
@@ -198,19 +219,19 @@ class BottomSheetClass {
                               ListContainer(
                                 subTitle: 'STEP 1',
                                 title: precaution1, // 추가(대비방안 1)
-                                imagePath: 'assets/icon.png',
+                                imagePath: imageUrl1,
                               ),
 
                               ListContainer(
                                 subTitle: 'STEP 2',
                                 title: precaution2, // 추가(대비방안 2)
-                                imagePath: 'assets/icon.png',
+                                imagePath: imageUrl2,
                               ),
 
                               ListContainer(
                                 subTitle: 'STEP 3',
                                 title: precaution3, // 추가(대비방안 3)
-                                imagePath: 'assets/icon.png',
+                                imagePath: imageUrl3,
                               ),
                               // 추가적인 컨텐츠를 여기에 배치할 수 있습니다
                             ],

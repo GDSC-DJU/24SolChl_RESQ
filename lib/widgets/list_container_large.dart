@@ -39,7 +39,7 @@ class ListContainerLarge extends StatelessWidget {
             const SizedBox(height: 8.0),
             Row(
               children: [
-                Image.asset(imagePath, width: 100, height: 100),
+                Image.network(imagePath, width: 100, height: 100),
                 const SizedBox(width: 8.0),
                 Expanded(
                   child: Text(
