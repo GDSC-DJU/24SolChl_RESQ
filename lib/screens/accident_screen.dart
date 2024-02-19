@@ -64,6 +64,18 @@ class AccidentScreenState extends State<AccidentScreen> {
         "감전사고",
         "엘리베이터 사고"
       ],
+      '산': ["낙석사고", "산불사고", "산사태", "낙하사고", "야생동물", "조난사고", "탈수", "일사병", "고산병"],
+      '바다': [
+        "해양 익사",
+        "해변 낙상",
+        "입수 후 저체온증",
+        "지진 해일 사고",
+        "해양 생물에 의한 사고",
+        "갯벌 사고",
+        "선박 침몰",
+        "낚시 장비 충돌",
+        "방파제 테트라포드 사고"
+      ],
     };
 
     for (String env in environments.keys) {
@@ -190,6 +202,7 @@ class AccidentScreenState extends State<AccidentScreen> {
     );
   }
 }
+
 // 4번 코드
 Future<Map<String, Object>> getDataFromFirestore() async {
   final firestore = FirebaseFirestore.instance;
