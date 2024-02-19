@@ -52,4 +52,12 @@ class AppTheme {
     fontWeight: FontWeight.w600,
     color: AppColors.textSecondary,
   );
+
+    static const TextStyle subText2 = TextStyle(
+    fontFamily: primaryFont,
+    fontSize: 18,
+    letterSpacing: primaryLetterSpacing,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textSecondary,
+  );
 }

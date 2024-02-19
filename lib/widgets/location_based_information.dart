@@ -8,6 +8,7 @@ import 'package:resq/states/location_controller.dart';
 import 'package:resq/styles/colors.dart';
 import 'package:resq/styles/constants.dart';
 import 'package:resq/widgets/rectangle_icon_card.dart';
+import 'dart:async';
 
 const googleElevationKey = "AIzaSyDFPyBxHHukkmlKfe3tfGwmSDIIiZE9clc";
 const googlePlacesKey = "AIzaSyA2OoWCsbg8IaIzSBv4SvH7EZAAw30GVlU";
@@ -16,34 +17,34 @@ const weatherKey = "af461c953e205294f8b149d6a35ebf0e";
 final locationTypeController = Get.put(LocationTypeController());
 
 final accidentIcons = {
-  "건물화재": 'assets/icons/icon.png',
-  "교통사고": 'assets/icons/icon.png',
-  "건물붕괴": 'assets/images/icon_cloud.png',
-  "공사장 가림막 사고": 'assets/images/icon_arrow.png',
-  "하천 침수": 'assets/images/icon_city.png',
-  "가스폭발사고": 'assets/icons/icon_gas.png',
-  "압사": 'assets/icons/icon_crush.png',
-  "감전사고": 'assets/icons/icon_electric.png',
-  "엘리베이터 사고": 'assets/icons/icon_elevator.png',
-  "낙석사고": 'assets/icons/icon_rockfall.png',
-  "산불사고": 'assets/icons/icon_forestfire.png',
-  "산사태": 'assets/icons/icon_landslide.png',
-  "낙하사고": 'assets/icons/icon_fall.png',
-  "야생동물": 'assets/icons/icon_animal.png',
-  "조난사고": 'assets/icons/icon_distress.png',
-  "탈수": 'assets/icons/icon_dehydration.png',
-  "일사병": 'assets/icons/icon_heatstroke.png',
-  "고산병": 'assets/icons/icon_altitudesickness.png',
-  "해양 익사": 'assets/icons/icon_drowning.png',
-  "해변 낙상": 'assets/icons/icon_beachfall.png',
-  "입수 후 저체온증": 'assets/icons/icon_hypothermia.png',
-  "지진 해일 사고": 'assets/icons/icon_tsunami.png',
-  "해양 생물에 의한 사고": 'assets/icons/icon_marine.png',
-  "갯벌 사고": 'assets/icons/icon_mudflats.png',
-  "선박 침몰": 'assets/icons/icon_shipwreck.png',
-  "낚시 장비 충돌": 'assets/icons/icon_fishing.png',
-  "방파제 테트라포드 사고": 'assets/icons/icon_tetrapod.png'
-}; //얘 왜 이미지를 못받아옴..?
+  '건물화재': 'assets/images/icon_buildingfire.png',
+  '건물붕괴': 'assets/images/icon_collapse.png',
+  '공사장 가림막 사고': 'assets/images/icon_construction.png',
+  '하천 침수': 'assets/images/icon_flooded.png',
+  '교통사고': 'assets/images/icon_carcrash.png',
+  '가스폭발사고': 'assets/images/icon_blast.png',
+  '압사': 'assets/images/icon_pressure.png',
+  '감전사고': 'assets/images/icon_electric.png',
+  '엘리베이터 사고': 'assets/images/icon_elevator.png',
+  '산불사고': 'assets/images/icon_forestfire.png',
+  '일사병': 'assets/images/icon_sunstroke.png',
+  '탈수': 'assets/images/icon_dehydration.png',
+  '산사태': 'assets/images/icon_landslide.png',
+  '고산병': 'assets/images/icon_altitudesickness.png',
+  '낙석사고': 'assets/images/icon_landslide.png',
+  '낙하사고': 'assets/images/icon_landslide.png',
+  '야생동물': 'assets/images/icon_wildanimal.png',
+  '조난사고': 'assets/images/icon_helicopter.png',
+  '해양 익사': 'assets/images/icon_drowning.png',
+  '입수 후 저체온증': 'assets/images/icon_lowtemperature.png',
+  '해양 생물에 의한 사고': 'assets/images/icon_shark.png',
+  '선박 침몰': 'assets/images/icon_sinking.png',
+  '낚시 장비 충돌': 'assets/images/icon_fishhook.png',
+  '해변 낙상': 'assets/images/icon_fall.png',
+  '지진 해일 사고': 'assets/images/icon_tsunami.png',
+  '갯벌 사고': 'assets/images/icon_beach.png',
+  '방파제 테트라포드 사고': 'assets/images/icon_stone.png',
+}; 
 
 class LocationBasedInformation extends StatefulWidget {
   const LocationBasedInformation({Key? key}) : super(key: key);
@@ -68,14 +69,48 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
     '바다': 'assets/images/icon_beach.png',
     '도시': 'assets/images/icon_city.png',
   };
-  double temperature = 0.0; //
-
+  
+  double temperature = 0.0;
+  
   @override
   void initState() {
     super.initState();
     accidentTypeController = Get.put(AccidentTypeController());
     determinePosition();
     getWeather();
+    updateAccidentTypePeriodically(); // accidentType을 주기적으로 업데이트하는 함수를 호출
+  }
+
+  void updateAccidentTypePeriodically() async {
+    // 첫 번째 타이머: 5초 후에 한 번만 실행
+    Timer(const Duration(seconds: 10), () async {
+      if (accidentTypeController.accidentTypes.isNotEmpty) {
+        int randomIndex =
+            Random().nextInt(accidentTypeController.accidentTypes.length);
+        String randomType = accidentTypeController.accidentTypes[randomIndex];
+        if (accidentTypeController.accidentTypes.contains(randomType)) {
+          setState(() {
+            accidentTypeController.updateAccidentType(randomType);
+          });
+        }
+      }
+    });
+
+    // 두 번째 타이머: 초기 5초가 지나고 1분마다 반복해서 실행
+    Timer(const Duration(minutes: 1), () {
+      Timer.periodic(const Duration(minutes: 1), (Timer t) async {
+        if (accidentTypeController.accidentTypes.isNotEmpty) {
+          int randomIndex =
+              Random().nextInt(accidentTypeController.accidentTypes.length);
+          String randomType = accidentTypeController.accidentTypes[randomIndex];
+          if (accidentTypeController.accidentTypes.contains(randomType)) {
+            setState(() {
+              accidentTypeController.updateAccidentType(randomType);
+            });
+          }
+        }
+      });
+    });
   }
 
   @override
@@ -88,6 +123,7 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
       randomIndex =
           Random().nextInt(accidentTypeController.accidentTypes.length);
       randomType = accidentTypeController.accidentTypes[randomIndex];
+      print('accidentType: $randomType');
       imagePath =
           accidentIcons[randomType] ?? 'assets/images/icon_earthquake.png';
     }
@@ -111,7 +147,7 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
               title: '오늘 날씨',
               iconPath:
                   weatherImages[weather] ?? 'assets/images/icon_umbrella.png',
-              description: '${temperature.toStringAsFixed(2)} °C'),
+              description: '${temperature.toStringAsFixed(1)} °C'),
           const IconCardDevide(),
           RectangleIconCard(
               title: '현재 장소',
@@ -120,7 +156,10 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
               description: locationType ?? '탐색중...'),
           const IconCardDevide(),
           RectangleIconCard(
-              title: '빈출 사고', iconPath: imagePath, description: randomType)
+            title: '빈출 사고', 
+            iconPath: imagePath, 
+            description: randomType
+          ),
         ],
       ),
     );
@@ -150,6 +189,7 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
     );
     final elevationData = jsonDecode(elevationResponse.body);
     final elevation = elevationData['results'][0]['elevation'];
+    print('Elevation: $elevation meters');
 
     // Google Places API를 호출하여 주변 장소를 얻음
     final placesResponse = await http.get(
@@ -160,7 +200,8 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
     final places = placesData['results'];
 
     // 고도와 주변 장소를 기반으로 위치 타입을 판단
-    if (elevation > 1000) {
+    if (elevation > 200) {
+      //테스트로 200 넣었음
       // 고도가 1000m 이상이면 산으로 판단
       return '산';
     } else if (places.where((place) {

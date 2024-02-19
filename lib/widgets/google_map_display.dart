@@ -1,4 +1,4 @@
-import 'dart:async'; // StreamSubscription 클래스를 사용하기 위해 dart:async 패키지를 import합니다.
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -17,19 +17,7 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
   IconData weatherIcon = Icons.cloud;
   double temperature = 0.0;
 
-  // 실시간 위치 추적을 위한 변수 추가
-  // 기본값으로 초기 위치를 설정
-  Position _currentPosition = Position(
-    latitude: 37.5665, // 기본 위도
-    longitude: 126.9780, // 기본 경도
-    timestamp: DateTime.now(),
-    accuracy: 0.0,
-    altitude: 0.0,
-    heading: 0.0,
-    speed: 0.0,
-    speedAccuracy: 0.0,
-  );
-
+  Position? _currentPosition;
   StreamSubscription<Position>? _positionStreamSubscription;
 
   void onMapCreated(GoogleMapController controller) {
@@ -39,11 +27,11 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
   @override
   void initState() {
     super.initState();
+    _getCurrentLocation();
 
-    // 실시간 위치 추적 설정
     _positionStreamSubscription = Geolocator.getPositionStream(
-      desiredAccuracy: LocationAccuracy.high,
-      distanceFilter: 10, //10미터 이동 감지해서 위치 파악, 실시간성때문에. 테스트 필요함!
+      desiredAccuracy: LocationAccuracy.bestForNavigation,
+      distanceFilter: 10,
     ).listen(
       (Position position) {
         setState(() {
@@ -55,9 +43,14 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
 
   @override
   void dispose() {
-    // 스트림 구독을 취소하여 리소스를 해제
     _positionStreamSubscription?.cancel();
     super.dispose();
+  }
+
+  Future<void> _getCurrentLocation() async {
+    _currentPosition = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.best,
+    );
   }
 
   @override
@@ -71,8 +64,8 @@ class _GoogleMapDisplayState extends State<GoogleMapDisplay> {
                 : GoogleMap(
                     onMapCreated: onMapCreated,
                     initialCameraPosition: CameraPosition(
-                      target: LatLng(_currentPosition.latitude,
-                          _currentPosition.longitude),
+                      target: LatLng(_currentPosition!.latitude,
+                          _currentPosition!.longitude),
                       zoom: 11.0,
                     ),
                     myLocationButtonEnabled: true,

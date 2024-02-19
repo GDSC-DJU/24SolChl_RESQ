@@ -8,6 +8,7 @@ import 'package:resq/styles/colors.dart';
 import 'package:resq/styles/constants.dart';
 import 'package:resq/widgets/list_container_large.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 
 Map<String, Object> accidentDescriptions = {};
 List<String> accidentTypes = [];
@@ -17,10 +18,10 @@ class AccidentScreen extends StatefulWidget {
   const AccidentScreen({Key? key}) : super(key: key);
 
   @override
-  _AccidentScreenState createState() => _AccidentScreenState();
+  AccidentScreenState createState() => AccidentScreenState();
 }
 
-class _AccidentScreenState extends State<AccidentScreen> {
+class AccidentScreenState extends State<AccidentScreen> {
   late final LocationTypeController locationController;
   late final TemperatureController temperatureController;
   late final AccidentTypeController accidentTypeController;
@@ -32,8 +33,15 @@ class _AccidentScreenState extends State<AccidentScreen> {
     temperatureController = Get.put(TemperatureController());
     accidentTypeController = Get.put(AccidentTypeController());
     getDataFromFirestore();
+
     fetchData();
-    //loadImage(); // 수정된 함수 호출
+      // 첫 번째 타이머: 1초 후에 한 번만 실행
+    Timer(const Duration(seconds: 1), fetchData);
+
+    // 두 번째 타이머: 초기 1초가 지나고 5분마다 반복해서 실행
+    Timer(const Duration(minutes: 5), () {
+      Timer.periodic(const Duration(minutes: 5), (Timer t) => fetchData());
+    });
   }
 
   Future<void> loadImage() async {
@@ -86,6 +94,9 @@ class _AccidentScreenState extends State<AccidentScreen> {
         imageUrls[type] = urls;
       }
     }
+
+
+ 
   }
 
   Future<void> fetchData() async {
@@ -156,7 +167,7 @@ class _AccidentScreenState extends State<AccidentScreen> {
                       ? (accidentDescriptions[accidentTypes[0]]
                               as Map<String, dynamic>)['의미']
                           .toString()
-                      : "설명이 없어요..",
+                      : "데이터를 받아오고 있습니다.",
                   index: 0),
               ListContainerLarge(
                   title: accidentTypes[1],
@@ -169,7 +180,7 @@ class _AccidentScreenState extends State<AccidentScreen> {
                       ? (accidentDescriptions[accidentTypes[1]]
                               as Map<String, dynamic>)['의미']
                           .toString()
-                      : "설명이 없어요..",
+                      : "데이터를 받아오고 있습니다.",
                   index: 1),
               ListContainerLarge(
                   title: accidentTypes[2],
@@ -182,7 +193,7 @@ class _AccidentScreenState extends State<AccidentScreen> {
                       ? (accidentDescriptions[accidentTypes[2]]
                               as Map<String, dynamic>)['의미']
                           .toString()
-                      : "설명이 없어요..",
+                      : "데이터를 받아오고 있습니다.",
                   index: 2),
             ],
           ),
