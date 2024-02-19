@@ -96,8 +96,8 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
       }
     });
 
-    // 두 번째 타이머: 초기 5초가 지나고 1분마다 반복해서 실행
-    Timer(const Duration(minutes: 1), () {
+    // 두 번째 타이머: 초기 10초가 지나고 30초마다 반복해서 실행
+    Timer(const Duration(seconds: 30), () {
       Timer.periodic(const Duration(minutes: 1), (Timer t) async {
         if (accidentTypeController.accidentTypes.isNotEmpty) {
           int randomIndex =
