@@ -35,11 +35,22 @@
 ## 8. How to Run
   * To build, an API key is required.
     * Modify the following part in the code located in the /android/app/src/main/AndroidManifest.xml directory.
-    ![alt text](google_map_api.png)
+    ```
+    <meta-data 
+	android:name = "com.google.android.geo.API KEY"
+	android:value = "API KEY"/> <!-- Please insert the API key here --> 
+    ```
+    
     * Add the API key to the "GEOCODE_API" variable in the /lib/widgets/location_display.dart file.
-    ![alt text](geocode_api.png)
+    ```
+    const GEOCODE_API = "API KEY"; // Please insert the API key here
+    ```
     * Add the API key to the API variable in the /lib/widgets/location_based_information.dart file.
-    ![alt text](three_api.png)
+    ```
+    const googleElevationKey = "API KEY" //Please insert the API key here
+    const googlePlacesKey = "API KEY" //Please insert the API key here
+    const weatherKey = "API KEY"; //Please insert the Openweather API key here
+    ```
   * **The runApp code only exists in the /lib/main.dart file. Therefore, the app is built from the main.dart file.**
   * After the app is launched, it analyzes and outputs the type of accident based on the acquired location and weather data.
     * There may be a slight delay in providing this information.
