@@ -13,6 +13,7 @@ import 'dart:async'; // 이미지 오버플로우
 Map<String, Object> accidentDescriptions = {};
 List<String> accidentTypes = [];
 Map<String, Object> imageUrls = {}; // 이미지 URL을 저장할 전역 변수
+String icon = ''; // 확성기 아이콘
 
 class AccidentScreen extends StatefulWidget {
   const AccidentScreen({Key? key}) : super(key: key);
@@ -46,6 +47,10 @@ class AccidentScreenState extends State<AccidentScreen> {
 
   Future<void> loadImage() async {
     final FirebaseStorage storage = FirebaseStorage.instance;
+
+    // 'gs://aiways1.appspot.com/3D아이콘/speaker.png' 이미지 URL 불러오기
+    Reference refSpeaker = storage.ref().child('3D아이콘/speaker.png');
+    icon = await refSpeaker.getDownloadURL();
 
     Map<String, List<String>> environments = {
       '도시': [
