@@ -1,3 +1,4 @@
+
 ![Readme_1280 loading](./assets/readme_1280_720.gif)
 
 ## 1. 😀 Welcome to RESQ :)
@@ -87,4 +88,3 @@ This project uses icons from Flaticon(www.flaticon.com) by various designers:
 - [Vector Stall](https://www.flaticon.com/kr/authors/vector-stallk)
 - [WR Graphic Garage](https://www.flaticon.com/kr/authors/wr-graphic-garage)
 - [Yuluck](https://www.flaticon.com/kr/authors/Yuluck)
-
