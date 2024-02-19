@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:resq/widgets/list_container.dart';
 import 'package:resq/widgets/list_section_head.dart';
 import 'package:resq/styles/colors.dart';
-import 'package:resq/screens/accident_screen.dart'; // 추가
-import 'package:youtube_player_flutter/youtube_player_flutter.dart'; // 추가
+import 'package:resq/screens/accident_screen.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:resq/widgets/text_link.dart';
 
 class BottomSheetClass {
   void showBottomSheet(BuildContext context, int index) {
@@ -226,6 +227,13 @@ class BottomSheetClass {
                                 title: precaution3, // 추가(대비방안 3)
                               ),
                               
+                              const SizedBox(height: 25),
+                              const Center( 
+                                child: CreditButton(
+                                  linkText: '영상 - 행정안전부',
+                                  linkUrl: 'https://www.youtube.com/@withyou3542',
+                                ),
+                              ),
                               const SizedBox(height: 25),
                             ],
                           );
