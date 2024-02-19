@@ -1,3 +1,5 @@
+![Readme_1280 loading](./assets/readme_1280_720.gif)
+
 ## 1. 😀 Welcome to RESQ :)
   * Provides accident type alerts to users by analyzing real-time location-based risk information.
   * Instills a sense of danger in users, providing accident prevention and response measures.

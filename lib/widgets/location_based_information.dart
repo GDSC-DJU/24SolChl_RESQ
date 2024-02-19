@@ -82,8 +82,8 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
   }
 
   void updateAccidentTypePeriodically() async {
-    // 첫 번째 타이머: 10초 후에 한 번만 실행
-    Timer(const Duration(seconds: 10), () async {
+    // 첫 번째 타이머: 3초 후에 한 번만 실행
+    Timer(const Duration(seconds: 3), () async {
       if (accidentTypeController.accidentTypes.isNotEmpty) {
         int randomIndex =
             Random().nextInt(accidentTypeController.accidentTypes.length);
@@ -96,8 +96,8 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
       }
     });
 
-    // 두 번째 타이머: 초기 10초가 지나고 30초마다 반복해서 실행
-    Timer(const Duration(seconds: 30), () {
+    // 두 번째 타이머: 초기 3초가 지나고 10초마다 반복해서 실행.. 테스트 중
+    Timer(const Duration(seconds: 10), () {
       Timer.periodic(const Duration(minutes: 1), (Timer t) async {
         if (accidentTypeController.accidentTypes.isNotEmpty) {
           int randomIndex =
@@ -197,7 +197,7 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
     final places = placesData['results'];
 
     // 고도와 주변 장소를 기반으로 위치 타입을 판단
-    if (elevation > 200) {
+    if (elevation > 100) {
       //테스트로 200 넣었음
       // 고도가 1000m 이상이면 산으로 판단
       return '산';
