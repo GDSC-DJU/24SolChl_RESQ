@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
           child: Column(
             children: [
               const MainProfile(
-                profileImageUrl: 'assets/images/avatar_adventurer.png',
+                profileImageUrl: 'assets/images/avatar_qgle.png',
                 name: '사고',
               ),
               SizedBox(

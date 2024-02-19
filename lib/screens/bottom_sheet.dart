@@ -191,9 +191,6 @@ class BottomSheetClass {
 
                               //5번
                               const SizedBox(height: 25),
-                              // 행동 요령
-
-                              const SizedBox(height: 25),
                               // 대비 방안
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment
@@ -215,25 +212,22 @@ class BottomSheetClass {
                                 ],
                               ),
                               const SizedBox(height: 12),
-
                               ListContainer(
                                 subTitle: 'STEP 1',
                                 title: precaution1, // 추가(대비방안 1)
-                                imagePath: imageUrl1,
                               ),
 
                               ListContainer(
                                 subTitle: 'STEP 2',
                                 title: precaution2, // 추가(대비방안 2)
-                                imagePath: imageUrl2,
                               ),
 
                               ListContainer(
                                 subTitle: 'STEP 3',
                                 title: precaution3, // 추가(대비방안 3)
-                                imagePath: imageUrl3,
                               ),
-                              // 추가적인 컨텐츠를 여기에 배치할 수 있습니다
+                              
+                              const SizedBox(height: 25),
                             ],
                           );
                         },
