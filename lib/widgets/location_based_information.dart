@@ -44,7 +44,7 @@ final accidentIcons = {
   '지진 해일 사고': 'assets/images/icon_tsunami.png',
   '갯벌 사고': 'assets/images/icon_beach.png',
   '방파제 테트라포드 사고': 'assets/images/icon_stone.png',
-}; 
+};
 
 class LocationBasedInformation extends StatefulWidget {
   const LocationBasedInformation({Key? key}) : super(key: key);
@@ -69,9 +69,9 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
     '바다': 'assets/images/icon_beach.png',
     '도시': 'assets/images/icon_city.png',
   };
-  
+
   double temperature = 0.0;
-  
+
   @override
   void initState() {
     super.initState();
@@ -156,10 +156,7 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
               description: locationType ?? '탐색중...'),
           const IconCardDevide(),
           RectangleIconCard(
-            title: '빈출 사고', 
-            iconPath: imagePath, 
-            description: randomType
-          ),
+              title: '빈출 사고', iconPath: imagePath, description: randomType),
         ],
       ),
     );

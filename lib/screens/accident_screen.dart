@@ -35,7 +35,7 @@ class AccidentScreenState extends State<AccidentScreen> {
     getDataFromFirestore();
 
     fetchData();
-      // 첫 번째 타이머: 1초 후에 한 번만 실행
+    // 첫 번째 타이머: 1초 후에 한 번만 실행
     Timer(const Duration(seconds: 1), fetchData);
 
     // 두 번째 타이머: 초기 1초가 지나고 5분마다 반복해서 실행
@@ -60,19 +60,18 @@ class AccidentScreenState extends State<AccidentScreen> {
         "엘리베이터 사고"
       ],
       // '산': ["낙석사고", "산불사고", "산사태", "낙하사고", "야생동물", "조난사고", "탈수", "일사병", "고산병"],
-      /*
-      '바다': [
-        "해양 익사",
-        "해변 낙상",
-        "입수 후 저체온증",
-        "지진 해일 사고",
-        "해양 생물에 의한 사고",
-        "갯벌 사고",
-        "선박 침몰",
-        "낚시 장비 충돌",
-        "방파제 테트라포드 사고"
-      ],
-      */
+
+      // '바다': [
+      //   "해양 익사",
+      //   "해변 낙상",
+      //   "입수 후 저체온증",
+      //   "지진 해일 사고",
+      //   "해양 생물에 의한 사고",
+      //   "갯벌 사고",
+      //   "선박 침몰",
+      //   "낚시 장비 충돌",
+      //   "방파제 테트라포드 사고"
+      // ],
     };
 
     for (String env in environments.keys) {
@@ -94,9 +93,6 @@ class AccidentScreenState extends State<AccidentScreen> {
         imageUrls[type] = urls;
       }
     }
-
-
- 
   }
 
   Future<void> fetchData() async {
