@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:resq/states/location_controller.dart';
@@ -10,6 +11,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 Map<String, Object> accidentDescriptions = {};
 List<String> accidentTypes = [];
+Map<String, Object> imageUrls = {}; // 이미지 URL을 저장할 전역 변수
 
 class AccidentScreen extends StatefulWidget {
   const AccidentScreen({Key? key}) : super(key: key);
@@ -31,10 +33,64 @@ class _AccidentScreenState extends State<AccidentScreen> {
     accidentTypeController = Get.put(AccidentTypeController());
     getDataFromFirestore();
     fetchData();
+    //loadImage(); // 수정된 함수 호출
+  }
+
+  Future<void> loadImage() async {
+    final FirebaseStorage storage = FirebaseStorage.instance;
+
+    Map<String, List<String>> environments = {
+      '도시': [
+        "건물화재",
+        "교통사고",
+        "건물붕괴",
+        "공사장 가림막 사고",
+        "하천 침수",
+        "가스폭발사고",
+        "압사",
+        "감전사고",
+        "엘리베이터 사고"
+      ],
+      // '산': ["낙석사고", "산불사고", "산사태", "낙하사고", "야생동물", "조난사고", "탈수", "일사병", "고산병"],
+      /*
+      '바다': [
+        "해양 익사",
+        "해변 낙상",
+        "입수 후 저체온증",
+        "지진 해일 사고",
+        "해양 생물에 의한 사고",
+        "갯벌 사고",
+        "선박 침몰",
+        "낚시 장비 충돌",
+        "방파제 테트라포드 사고"
+      ],
+      */
+    };
+
+    for (String env in environments.keys) {
+      for (String type in environments[env]!) {
+        List<String> urls = [];
+        for (int i = 1; i <= 3; i++) {
+          Reference ref = storage.ref().child('사고유형/$env/$type/$type$i.png');
+          try {
+            String? imageUrl = await ref.getDownloadURL();
+            if (Uri.parse(imageUrl).isAbsolute) {
+              urls.add(imageUrl);
+            } else {
+              print('Invalid URL for $type$i.png');
+            }
+          } catch (e) {
+            print('Failed to get URL for $type$i.png: $e');
+          }
+        }
+        imageUrls[type] = urls;
+      }
+    }
   }
 
   Future<void> fetchData() async {
     accidentDescriptions = await getDataFromFirestore();
+    await loadImage();
     accidentTypeController.accidentTypes.value = getAccidentType(
         locationController.locationType.value,
         temperatureController.temperature.value);
@@ -91,8 +147,11 @@ class _AccidentScreenState extends State<AccidentScreen> {
               ),
               ListContainerLarge(
                   title: accidentTypes[0],
-                  imagePath:
-                      accidentImages[accidentTypes[0]] ?? 'assets/icon.png',
+                  imagePath: imageUrls[accidentTypes[0]] != null &&
+                          (imageUrls[accidentTypes[0]] as List<String>)
+                              .isNotEmpty
+                      ? (imageUrls[accidentTypes[0]] as List<String>)[0]
+                      : 'assets/icon.png',
                   description: accidentDescriptions[accidentTypes[0]] != null
                       ? (accidentDescriptions[accidentTypes[0]]
                               as Map<String, dynamic>)['의미']
@@ -101,8 +160,11 @@ class _AccidentScreenState extends State<AccidentScreen> {
                   index: 0),
               ListContainerLarge(
                   title: accidentTypes[1],
-                  imagePath:
-                      accidentImages[accidentTypes[1]] ?? 'assets/icon.png',
+                  imagePath: imageUrls[accidentTypes[1]] != null &&
+                          (imageUrls[accidentTypes[1]] as List<String>)
+                              .isNotEmpty
+                      ? (imageUrls[accidentTypes[1]] as List<String>)[0]
+                      : 'assets/icon.png',
                   description: accidentDescriptions[accidentTypes[1]] != null
                       ? (accidentDescriptions[accidentTypes[1]]
                               as Map<String, dynamic>)['의미']
@@ -111,8 +173,11 @@ class _AccidentScreenState extends State<AccidentScreen> {
                   index: 1),
               ListContainerLarge(
                   title: accidentTypes[2],
-                  imagePath:
-                      accidentImages[accidentTypes[2]] ?? 'assets/icon.png',
+                  imagePath: imageUrls[accidentTypes[2]] != null &&
+                          (imageUrls[accidentTypes[2]] as List<String>)
+                              .isNotEmpty
+                      ? (imageUrls[accidentTypes[2]] as List<String>)[0]
+                      : 'assets/icon.png',
                   description: accidentDescriptions[accidentTypes[2]] != null
                       ? (accidentDescriptions[accidentTypes[2]]
                               as Map<String, dynamic>)['의미']
