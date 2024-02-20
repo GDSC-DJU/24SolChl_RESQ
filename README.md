@@ -1,5 +1,4 @@
-
-![Readme_1280 loading](./assets/readme_1280_720.gif)
+![Readme_1440 loading](./assets/readme_images/readme_1440p.gif)
 
 ## 1. 😀 Welcome to RESQ :)
   * Provides accident type alerts to users by analyzing real-time location-based risk information.
@@ -11,7 +10,7 @@
   RESQ helps users to prevent and prepare wherever they are. It collects and analyzes user data in real time to inform you of all possible dangerous situations. Then, it presents preventive measures that users can prepare for. 
 
 ## 3. ⚽️ UN SDGs & Our Goals
-![alt text](sdgs.png)
+![sdgs](./assets/readme_images/sdgs.png)
   Our solution has selected **Health and Well-being, Sustainable Cities and Communities, and Climate Action from the UN's Sustainable Development Goals.** The reason for choosing these goals is considering the reality that many people are currently unable to cope with unexpected accidents or disasters, and as a result, casualties and property damage are occurring. We aimed to develop a system that could take immediate action to prevent and prepare for such situations.
   * From the perspective of Health and Well-being, our solution helps people live healthily and safely in a safe environment. It provides ways to prepare for each type of accident in advance, enabling quick and accurate responses when a disaster occurs. Through accident awareness, a more composed response is possible, which in turn can minimize casualties.
   * In terms of Sustainable Cities and Communities, our system aids in identifying and preventing risk factors in cities and residences. This helps create a safe environment in cities and residences, improving the quality of life for residents.
