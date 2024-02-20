@@ -87,4 +87,3 @@ This project uses icons from Flaticon(www.flaticon.com) by various designers:
 - [Vector Stall](https://www.flaticon.com/kr/authors/vector-stallk)
 - [WR Graphic Garage](https://www.flaticon.com/kr/authors/wr-graphic-garage)
 - [Yuluck](https://www.flaticon.com/kr/authors/Yuluck)
-

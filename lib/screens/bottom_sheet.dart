@@ -131,11 +131,14 @@ class BottomSheetClass {
                       YoutubePlayer(
                         controller: controller,
                         showVideoProgressIndicator: true,
+                        bottomActions: [
+                          CurrentPosition(),
+                          ProgressBar(isExpanded: true),
+                        ],
                         onReady: () {
                           print('Player is ready.');
                         },
                       ),
-
                       // 스크롤 가능한 위젯
                       Expanded(
                           child: ListView.builder(
@@ -226,12 +229,13 @@ class BottomSheetClass {
                                 subTitle: 'STEP 3',
                                 title: precaution3, // 추가(대비방안 3)
                               ),
-                              
+
                               const SizedBox(height: 25),
-                              const Center( 
+                              const Center(
                                 child: CreditButton(
                                   linkText: '영상 - 행정안전부',
-                                  linkUrl: 'https://www.youtube.com/@withyou3542',
+                                  linkUrl:
+                                      'https://www.youtube.com/@withyou3542',
                                 ),
                               ),
                               const SizedBox(height: 25),
