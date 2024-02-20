@@ -4,13 +4,6 @@ import 'package:resq/widgets/text_link.dart';
 
 class AppInfo extends StatelessWidget  {
 
-  final List<String> credits = [
-    'Icon made by [Freepik]',
-    'Icon made by [Yuluck]',
-    'Icon made by [GOFOX]',
-    'Icon made by [Vector Stall]',
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Container(
