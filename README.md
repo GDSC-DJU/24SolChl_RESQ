@@ -18,7 +18,7 @@
   * **Firebase**
   * **Google Cloud API Service**
   
-## 🛠️ Architecture
+## 🛠️ PROJECT Architecture
 ![RESQ_Architecture](./assets/readme_images/RESQARCH.jpeg)
 
 ## 📱 APP Screenshot & Description
