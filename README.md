@@ -19,7 +19,7 @@
   * **Google Cloud API Service**
   
 ## 5. Architecture
-![RESQ_Architecture](./assets/readme_images/RESQArchi.jpeg)
+![RESQ_Architecture](./assets/readme_images/RESQARCH.jpeg)
 
 ## 6. APP Screenshot & Description
 
