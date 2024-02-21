@@ -53,17 +53,17 @@
     * Modify the following part in the code located in the /android/app/src/main/AndroidManifest.xml directory.
     ```
     <meta-data 
-	android:name = "com.google.android.geo.API KEY"
+	android:name = "com.google.android.geo.API KEY" <!-- 21 line code -->
 	android:value = "API KEY"/> <!-- Please insert the Google Map API key here --> 
     ```
     
     * Add the API key to the "GEOCODE_API" variable in the /lib/widgets/location_display.dart file.
     ```
-    const GEOCODE_API = "API KEY"; // Please insert the Google Geocode API key here
+    const GEOCODE_API = "API KEY"; // Please insert the Google Geocode API key here, 12 line code
     ```
     * Add the API key to the API variable in the /lib/widgets/location_based_information.dart file.
     ```
-    const googleElevationKey = "API KEY" //Please insert the Google Elevation API key here
+    const googleElevationKey = "API KEY" //Please insert the Google Elevation API key here, 13~15 line code
     const googlePlacesKey = "API KEY" //Please insert the Google Places API key here
     const weatherKey = "API KEY"; //Please insert the OpenWeatherMap API key here
     ```
@@ -82,23 +82,4 @@
 ## 💰 Credits
 This project uses icons from Flaticon(www.flaticon.com) by various designers:
 
-- [Andrejs Kirma](https://www.flaticon.com/kr/authors/andrejs-kirma)
-- [BankSeeNgern](https://www.flaticon.com/kr/authors/bankseengern)
-- [Circlon Tech](https://www.flaticon.com/kr/authors/circlon-tech)
-- [Dixit Lakhani_02](https://www.flaticon.com/kr/authors/dixit-lakhani-02)
-- [Ehtisham Abid](https://www.flaticon.com/kr/authors/ehtisham-abid)
-- [Freepik](https://www.flaticon.com/kr/authors/Freepik)
-- [GOFOX](https://www.flaticon.com/kr/authors/GOFOX)
-- [IdeaGrafc](https://www.flaticon.com/kr/authors/ideagrafc)
-- [kliwir art](https://www.flaticon.com/kr/authors/kliwir-art)
-- [Leremy](https://www.flaticon.com/kr/authors/leremy)
-- [Mehwish](https://www.flaticon.com/kr/authors/mehwish)
-- [Muhammad_Usman](https://www.flaticon.com/kr/authors/muhammad-usman)
-- [NajmunNahar](https://www.flaticon.com/kr/authors/najmunnahar)
-- [orvipixel](https://www.flaticon.com/kr/authors/orvipixel)
-- [Prosymbols Premium](https://www.flaticon.com/kr/authors/prosymbols-premium)
-- [Smashicons](https://www.flaticon.com/kr/authors/smashicons)
-- [tulpahn](https://www.flaticon.com/kr/authors/tulpahn)
-- [Vector Stall](https://www.flaticon.com/kr/authors/vector-stallk)
-- [WR Graphic Garage](https://www.flaticon.com/kr/authors/wr-graphic-garage)
-- [Yuluck](https://www.flaticon.com/kr/authors/Yuluck)
+[Andrejs Kirma](https://www.flaticon.com/kr/authors/andrejs-kirma), [BankSeeNgern](https://www.flaticon.com/kr/authors/bankseengern), [Circlon Tech](https://www.flaticon.com/kr/authors/circlon-tech), [Dixit Lakhani_02](https://www.flaticon.com/kr/authors/dixit-lakhani-02), [Ehtisham Abid](https://www.flaticon.com/kr/authors/ehtisham-abid), [Freepik](https://www.flaticon.com/kr/authors/Freepik), [GOFOX](https://www.flaticon.com/kr/authors/GOFOX), [IdeaGrafc](https://www.flaticon.com/kr/authors/ideagrafc), [kliwir art](https://www.flaticon.com/kr/authors/kliwir-art), [Leremy](https://www.flaticon.com/kr/authors/leremy), [Mehwish](https://www.flaticon.com/kr/authors/mehwish), [Muhammad_Usman](https://www.flaticon.com/kr/authors/muhammad-usman), [NajmunNahar](https://www.flaticon.com/kr/authors/najmunnahar), [orvipixel](https://www.flaticon.com/kr/authors/orvipixel), [Prosymbols Premium](https://www.flaticon.com/kr/authors/prosymbols-premium), [Smashicons](https://www.flaticon.com/kr/authors/smashicons), [tulpahn](https://www.flaticon.com/kr/authors/tulpahn), [Vector Stall](https://www.flaticon.com/kr/authors/vector-stallk), [WR Graphic Garage](https://www.flaticon.com/kr/authors/wr-graphic-garage), [Yuluck](https://www.flaticon.com/kr/authors/Yuluck)
