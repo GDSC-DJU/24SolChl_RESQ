@@ -41,18 +41,18 @@
     ```
     <meta-data 
 	android:name = "com.google.android.geo.API KEY"
-	android:value = "API KEY"/> <!-- Please insert the API key here --> 
+	android:value = "API KEY"/> <!-- Please insert the Google Map API key here --> 
     ```
     
     * Add the API key to the "GEOCODE_API" variable in the /lib/widgets/location_display.dart file.
     ```
-    const GEOCODE_API = "API KEY"; // Please insert the API key here
+    const GEOCODE_API = "API KEY"; // Please insert the Google Geocode API key here
     ```
     * Add the API key to the API variable in the /lib/widgets/location_based_information.dart file.
     ```
-    const googleElevationKey = "API KEY" //Please insert the API key here
-    const googlePlacesKey = "API KEY" //Please insert the API key here
-    const weatherKey = "API KEY"; //Please insert the Openweather API key here
+    const googleElevationKey = "API KEY" //Please insert the Google Elevation API key here
+    const googlePlacesKey = "API KEY" //Please insert the Google Places API key here
+    const weatherKey = "API KEY"; //Please insert the OpenWeatherMap API key here
     ```
   * **The runApp code only exists in the /lib/main.dart file. Therefore, the app is built from the main.dart file.**
   * After the app is launched, it analyzes and outputs the type of accident based on the acquired location and weather data.
