@@ -46,6 +46,7 @@
   * **Hardware integration**: We will distribute accident prevention videos and images on billboards or signs and attach QR codes for easy access to the RESQ application. This will reduce the inconvenience of users having to find and install the application themselves and increase the accessibility of the application.
   * **AI feature expansion**: Currently, we have the ability to detect disaster situations such as fires and earthquakes, but we plan to expand this to detect and respond to various accident situations. We will improve the AI algorithm and collect new data for learning if needed to analyze and provide more information.
   * **UI improvement**: We will improve the UI so that users can use the RESQ application more conveniently. To this end, we will collect user feedback, conduct A/B tests, and improve the UI/UX.
+  * **Enhancing Real-Time Location Information**: By continuously updating location information, we can improve the accuracy of the current location and provide more precise types of accidents accordingly.
 
 ## 🏃 How to Run
   * To build, an API key is required.
