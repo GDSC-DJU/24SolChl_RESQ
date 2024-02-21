@@ -22,6 +22,8 @@
 ![RESQ_Architecture](./assets/readme_images/RESQ_Architecture.jpeg)
 
 ## 📱 APP Screenshot & Description
+![RESQ_fig](./assets/readme_images/RESQ_gif.gif)
+
 
 ## ⭐️ Future
   Our goal is to get as many people as possible to use the RESQ application, enabling them to live in a safe environment. To this end, we plan to pursue the following expansion plans in the next step:
