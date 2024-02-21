@@ -9,7 +9,7 @@ import 'package:resq/styles/theme.dart';
 import 'package:resq/styles/constants.dart';
 import 'package:resq/utils/location_monitoring.dart';
 
-const GEOCODE_API = "AIzaSyBd0AOAQD8FDGzLRJBlRFzsMP9qDcOUBrs";
+const GEOCODE_API = "API KEY";
 
 class LocationDisplay extends StatefulWidget {
   const LocationDisplay({Key? key}) : super(key: key);

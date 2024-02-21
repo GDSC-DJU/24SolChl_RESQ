@@ -10,9 +10,9 @@ import 'package:resq/styles/constants.dart';
 import 'package:resq/widgets/rectangle_icon_card.dart';
 import 'dart:async';
 
-const googleElevationKey = "AIzaSyDFPyBxHHukkmlKfe3tfGwmSDIIiZE9clc";
-const googlePlacesKey = "AIzaSyA2OoWCsbg8IaIzSBv4SvH7EZAAw30GVlU";
-const weatherKey = "af461c953e205294f8b149d6a35ebf0e";
+const googleElevationKey = "API KEY";
+const googlePlacesKey = "API KEY";
+const weatherKey = "API KEY";
 
 final locationTypeController = Get.put(LocationTypeController());
 
@@ -96,7 +96,7 @@ class _LocationBasedInformationState extends State<LocationBasedInformation> {
       }
     });
 
-    // 두 번째 타이머: 초기 3초가 지나고 10초마다 반복해서 실행.. 테스트 중
+    // 두 번째 타이머: 초기 3초가 지나고 1분마다 반복해서 실행..
     Timer(const Duration(seconds: 10), () {
       Timer.periodic(const Duration(minutes: 1), (Timer t) async {
         if (accidentTypeController.accidentTypes.isNotEmpty) {
