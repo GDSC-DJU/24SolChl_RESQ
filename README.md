@@ -12,11 +12,7 @@
 ## 3. ⚽️ UN SDGs & Our Goals
 ![sdgs](./assets/readme_images/sdgs.png)
   Our solution has selected **Health and Well-being, Sustainable Cities and Communities, and Climate Action from the UN's Sustainable Development Goals.** The reason for choosing these goals is considering the reality that many people are currently unable to cope with unexpected accidents or disasters, and as a result, casualties and property damage are occurring. We aimed to develop a system that could take immediate action to prevent and prepare for such situations.
-  * From the perspective of Health and Well-being, our solution helps people live healthily and safely in a safe environment. It provides ways to prepare for each type of accident in advance, enabling quick and accurate responses when a disaster occurs. Through accident awareness, a more composed response is possible, which in turn can minimize casualties.
-  * In terms of Sustainable Cities and Communities, our system aids in identifying and preventing risk factors in cities and residences. This helps create a safe environment in cities and residences, improving the quality of life for residents.
-  * From the perspective of Climate Action, our solution assists in preventing and preparing for disasters caused by climate change. By integrating weather information and location information to prevent unexpected accidents caused by climate change in specific places, it provides ways to deal with accident types, reducing damage from disasters.
-  In this way, we decided to use smartphones and wearable devices, which are always with us and can ask for help. Based on your real-time location, we inform you of all situations that can occur in that place and also provide immediate solutions. Through our service, we will contribute to promoting health and safety, creating sustainable cities and residences, and ensuring people's safety and well-being in response to climate change.
-  
+
 ## 4. Google Technologies Used
   * **Flutter**: Flutter is an open-source mobile application development framework developed by Google. It is based on the Dart language and provides high-quality native interfaces for both iOS and Android from a single codebase. Flutter offers many advantages to developers, such as fast development speed, various UI components, and performance identical to native apps. Also, Flutter includes the features that RESQ needs to use in its package, and it's convenient to integrate with the GCP API. For these reasons, we chose the Flutter technology.
   
