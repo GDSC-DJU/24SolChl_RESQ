@@ -24,9 +24,9 @@
 ## 📱 APP Screenshot & Description
 <table>
   <tr>
-    <td valign="top"><img src="./assets/readme_images/RESQ_gif.gif" alt="RESQ_fig" width="800" height="800"></td>
+    <td valign="top"><img src="./assets/readme_images/RESQ_gif.gif" alt="RESQ_fig" width="300" height="600"></td>
     <td valign="top">
-      <h3><ul>
+      <h4><ul>
         <li>The app activates a map based on the user's current location.</li><br><br><br>
         <li>It provides various information suitable for the user's current location.</li><br><br><br>
         <li>Considering the user's location and surrounding areas, it displays the current weather, place information, and major types of accidents.</li><br><br><br>
@@ -34,7 +34,7 @@
         <li>It provides the user with the three most likely types of accidents to occur in their current location.</li><br><br><br>
         <li>When clicking on the accident type list, it provides a detailed explanation video about that type of accident, along with detailed measures and preparations for it.</li><br><br><br>
         <li>On the bottom right of the app screen, there is a phone icon that you can click to call 119 immediately, enabling a quick response in an emergency.</li>
-      </ul><h3>
+      </ul><h4>
     </td>
   </tr>
 </table>
