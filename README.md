@@ -1,35 +1,35 @@
 ![Readme_1440 loading](./assets/readme_images/readme_1440p.gif)
 
-## 1. 😀 Welcome to RESQ :)
+## 😀 Welcome to RESQ :)
   * Provides accident type alerts to users by analyzing real-time location-based risk information.
   * Instills a sense of danger in users, providing accident prevention and response measures.
   * **An accident prevention service through place recognition and crisis detection.**
   
-## 2. 📢 Introduction
+## 📢 Introduction
   Unexpected accidents and emergencies can occur at any time depending on the characteristics of each country or region. This includes earthquakes, fires, traffic accidents, etc. When an urgent situation occurs, it is difficult to make quick and accurate judgments. Therefore, we wanted to allow users to be aware of countermeasures in advance by having a sense of caution before a crisis situation.
   RESQ helps users to prevent and prepare wherever they are. It collects and analyzes user data in real time to inform you of all possible dangerous situations. Then, it presents preventive measures that users can prepare for. 
 
-## 3. ⚽️ UN SDGs & Our Goals
+## ⚽️ UN SDGs & Our Goals
 ![sdgs](./assets/readme_images/sdgs.png)
   Our solution has selected **Health and Well-being, Sustainable Cities and Communities, and Climate Action from the UN's Sustainable Development Goals.** The reason for choosing these goals is considering the reality that many people are currently unable to cope with unexpected accidents or disasters, and as a result, casualties and property damage are occurring. We aimed to develop a system that could take immediate action to prevent and prepare for such situations.
 
-## 4. Google Technologies Used
+## ⚙ Google Technologies Used
   * **Flutter** 
   * **Firebase**
   * **Google Cloud API Service**
   
-## 5. Architecture
+## 🛠️ Architecture
 ![RESQ_Architecture](./assets/readme_images/RESQARCH.jpeg)
 
-## 6. APP Screenshot & Description
+## 📱 APP Screenshot & Description
 
-## 7. Future
+## ⭐️ Future
   Our goal is to get as many people as possible to use the RESQ application, enabling them to live in a safe environment. To this end, we plan to pursue the following expansion plans in the next step:
   * **Hardware integration**: We will distribute accident prevention videos and images on billboards or signs and attach QR codes for easy access to the RESQ application. This will reduce the inconvenience of users having to find and install the application themselves and increase the accessibility of the application.
   * **AI feature expansion**: Currently, we have the ability to detect disaster situations such as fires and earthquakes, but we plan to expand this to detect and respond to various accident situations. We will improve the AI algorithm and collect new data for learning if needed to analyze and provide more information.
   * **UI improvement**: We will improve the UI so that users can use the RESQ application more conveniently. To this end, we will collect user feedback, conduct A/B tests, and improve the UI/UX.
 
-## 8. How to Run
+## 🏃 How to Run
   * To build, an API key is required.
     * Modify the following part in the code located in the /android/app/src/main/AndroidManifest.xml directory.
     ```
@@ -53,14 +53,14 @@
     * There may be a slight delay in providing this information.
   * Currently, **it only supports Android devices,** but plans to make ios devices available in the future. 
 
-## 9. R&R
+## 🚨 RESQ R&R
 - **김민혁** (MinHyeok Kim)
 - **정애리** (AeRi Jung)
 - **곽지훈** (JiHoon Kwak)
 - **표성우** (SungWoo Pyo)
     
 
-## Credits
+## 💰 Credits
 This project uses icons from Flaticon(www.flaticon.com) by various designers:
 
 - [Andrejs Kirma](https://www.flaticon.com/kr/authors/andrejs-kirma)
