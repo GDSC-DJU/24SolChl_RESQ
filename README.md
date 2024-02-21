@@ -24,7 +24,7 @@
 ## 📱 APP Screenshot & Description
 <table>
   <tr>
-    <td valign="top"><img src="./assets/readme_images/RESQ_gif.gif" alt="RESQ_fig" width="300" height="600"></td>
+    <td valign="top"><img src="./assets/readme_images/RESQ_gif.gif" alt="RESQ_fig" width="400" height="700"></td>
     <td valign="top">
       <h4><ul>
         <li>The app activates a map based on the user's current location.</li><br><br><br>
