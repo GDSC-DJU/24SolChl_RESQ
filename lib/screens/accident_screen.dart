@@ -8,7 +8,7 @@ import 'package:resq/styles/colors.dart';
 import 'package:resq/styles/constants.dart';
 import 'package:resq/widgets/list_container_large.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dart:async'; // 이미지 오버플로우
+import 'dart:async';
 
 Map<String, Object> accidentDescriptions = {};
 List<String> accidentTypes = [];
@@ -245,14 +245,14 @@ Future<Map<String, Object>> getDataFromFirestore() async {
           .doc("${accidentType}_ID");
 
       await docRef.get().then((DocumentSnapshot doc) {
-        // 콜백 함수의 인자인 doc는 가져온 문서의 스냅샷입니다.
+        // 콜백 함수의 인자인 doc는 가져온 문서의 스냅샷
         if (doc.exists) {
           //가져온 문서가 존재하는지 확인
           Map<String, dynamic>? data = doc.data() as Map<String,
-              dynamic>?; //  가져온 문서의 데이터를 맵으로 변환합니다. 이 맵의 키는 문자열, 값은 동적 타입입니다.
+              dynamic>?; //  가져온 문서의 데이터를 맵으로 변환. 이 맵의 키는 문자열, 값은 동적 타입
 
           accidentDescriptions[accidentType] = {
-            //사고에 대한 설명은 "의미", "사례", "대처방안", "대비방안" 네 가지 항목으로 구성되며, 각 항목의 값은 Firestore 문서로부터 가져온 데이터입니다.
+            //사고에 대한 설명은 "의미", "사례", "대처방안", "대비방안" 네 가지 항목으로 구성, 각 항목의 값은 Firestore 문서로부터 가져온 데이터
             '의미': data?['의미'],
             '행동 요령 영상 ID': data?['행동 요령 영상 ID'], // 추가
             '타이틀': data?['타이틀'].join(", "), //추가
@@ -272,11 +272,6 @@ Future<Map<String, Object>> getDataFromFirestore() async {
   return accidentDescriptions;
 }
 
-Map<String, String> accidentImages = {
-  '건물화재': 'assets/images/fire.png', // 여기 문제
-  '건물붕괴': 'assets/icon.png',
-  //여기에 각 사고유형별 이미지 넣으면 됨
-};
 List<String> getAccidentType(String locationType, double temperature) {
   List<String> accidentTypes = [];
 
