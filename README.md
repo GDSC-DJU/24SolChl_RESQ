@@ -14,11 +14,9 @@
   Our solution has selected **Health and Well-being, Sustainable Cities and Communities, and Climate Action from the UN's Sustainable Development Goals.** The reason for choosing these goals is considering the reality that many people are currently unable to cope with unexpected accidents or disasters, and as a result, casualties and property damage are occurring. We aimed to develop a system that could take immediate action to prevent and prepare for such situations.
 
 ## 4. Google Technologies Used
-  * **Flutter**: Flutter is an open-source mobile application development framework developed by Google. It is based on the Dart language and provides high-quality native interfaces for both iOS and Android from a single codebase. Flutter offers many advantages to developers, such as fast development speed, various UI components, and performance identical to native apps. Also, Flutter includes the features that RESQ needs to use in its package, and it's convenient to integrate with the GCP API. For these reasons, we chose the Flutter technology.
-  
-  * **Firebase**: Firebase is a cloud-based backend service platform provided by Google. It offers a variety of backend services such as real-time database, authentication, cloud storage, hosting, push notifications, etc. Using Firebase reduces the burden of server development and maintenance, and allows easy use of cloud-based backend services. Also, Firebase integrates well with Flutter, making it suitable for Flutter application development. For these reasons, we chose Firebase technology.
-  
-* **Google Cloud API Service**: Processed and processed the required information using the Google Maps API, Google Places API, Google Elevation API, and Google Geocode API.
+  * **Flutter** 
+  * **Firebase**
+  * **Google Cloud API Service**
   
 ## 5. Architecture
 ![RESQ_Architecture](./assets/readme_images/RESQ_Architecture.png)
@@ -53,6 +51,7 @@
   * **The runApp code only exists in the /lib/main.dart file. Therefore, the app is built from the main.dart file.**
   * After the app is launched, it analyzes and outputs the type of accident based on the acquired location and weather data.
     * There may be a slight delay in providing this information.
+  * Currently, **it only supports Android devices,** but plans to make ios devices available in the future. 
 
 ## 9. R&R
 - **김민혁** (MinHyeok Kim)
