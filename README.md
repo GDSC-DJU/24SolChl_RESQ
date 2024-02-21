@@ -19,7 +19,7 @@
   * **Google Cloud API Service**
   
 ## 🛠️ PROJECT Architecture
-![RESQ_Architecture](./assets/readme_images/RESQARCH.jpeg)
+![RESQ_Architecture](./assets/readme_images/RESQ_Architecture.jpeg)
 
 ## 📱 APP Screenshot & Description
 ![alt text](<영상촬영_산_앱 작동화면.gif>)
