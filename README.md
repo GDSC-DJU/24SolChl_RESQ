@@ -25,6 +25,7 @@
 * **Google Cloud API Service**: Processed and processed the required information using the Google Maps API, Google Places API, Google Elevation API, and Google Geocode API.
   
 ## 5. Architecture
+![RESQ_Architecture](/.assets/readme_images/RESQ_Architecture.png)
 
 ## 6. APP Screenshot & Description
 
