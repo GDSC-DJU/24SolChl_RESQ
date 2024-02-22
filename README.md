@@ -71,6 +71,7 @@
   * After the app is launched, it analyzes and outputs the type of accident based on the acquired location and weather data.
     * There may be a slight delay in providing this information.
   * Currently, **it only supports Android devices,** but plans to make ios devices available in the future. 
+  * Download this apk file and use the app. [Download .APK](https://drive.google.com/file/d/1BMC9IuaolIkh8bE74c1OwlaOlNJaeAKi/view?usp=drive_link)
 
 ## 🚨 RESQ R&R
 - **김민혁** (MinHyeok Kim)
