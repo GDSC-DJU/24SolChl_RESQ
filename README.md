@@ -74,10 +74,11 @@
   * Download this apk file and use the app. [Download .APK](https://drive.google.com/file/d/1dvuSGStwMTAk4_Dga4C3xlHhzyzRbicm/view?usp=drive_link)
 
 ## 🚨 RESQ R&R
-- **김민혁** (MinHyeok Kim)
-- **정애리** (AeRi Jung)
-- **곽지훈** (JiHoon Kwak)
-- **표성우** (SungWoo Pyo)
+- **김민혁** (MinHyeok Kim) Front-End|UX/UI Design, AI Logic, StroyBoard
+- **정애리** (AeRi Jung)    Front-End|UX/UI Design, Sub Logic, Video production
+- **곽지훈** (JiHoon Kwak)  Front-End|Main Logic, API Management, Documentation
+- **표성우** (SungWoo Pyo)  Back-End|DataBase Management, DB Logic
+
     
 
 ## 💰 Credits
