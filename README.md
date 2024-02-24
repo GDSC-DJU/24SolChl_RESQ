@@ -70,6 +70,7 @@
   * **The runApp code only exists in the [`/lib/main.dart`](https://github.com/GDSC-DJU/24SolChl_RESQ/blob/main/lib/main.dart) file. Therefore, the app is built from the `main.dart` file.**
   * After the app is launched, it analyzes and outputs the type of accident based on the acquired location and weather data.
     * There may be a slight delay in providing this information.
+    * If you don't get any information over time, please turn off the app and turn it on.
   * Currently, **it only supports Android devices,** but plans to make ios devices available in the future. 
   * Download this apk file and use the app. [Download .APK](https://drive.google.com/file/d/1dvuSGStwMTAk4_Dga4C3xlHhzyzRbicm/view?usp=drive_link)
 
