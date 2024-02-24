@@ -74,6 +74,10 @@
   * Currently, **it only supports Android devices,** but plans to make ios devices available in the future. 
   * Download this apk file and use the app. [Download .APK](https://drive.google.com/file/d/1dvuSGStwMTAk4_Dga4C3xlHhzyzRbicm/view?usp=drive_link)
 
+## 🎨 Character Design
+![Qgle_Design](./assets/readme_images/Qgle_Design.png)
+
+
 ## 🚨 RESQ R&R
 - **김민혁** (MinHyeok Kim): Front-End(UX/UI Design, AI Logic, StroyBoard)
 - **정애리** (AeRi Jung): Front-End(UX/UI Design, Sub Logic, Video production)
